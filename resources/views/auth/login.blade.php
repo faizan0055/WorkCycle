@@ -5,12 +5,12 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Title -->
-    <title> Admin | Boatbrain </title>
+    <title> Admin | IndiaKaResturant </title>
     <meta name="Author" content="Boat Brain">
     <meta name="Keywords" content="Boat Brain,"/>
 
     <!-- Favicon -->
-    <link rel="icon" href="{{asset('images/logoforappstores.png')}}" type="image/x-icon"/>
+    <link rel="icon" href="{{asset('images/logo.png')}}" type="image/x-icon"/>
 
     <!-- Icons css -->
     <link href="{{asset('assets/css/icons.css')}}" rel="stylesheet">
@@ -66,7 +66,7 @@
                         <div class="row">
                             <div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
                                 <div class="card-sigin">
-                                    <div class="mb-5 d-flex"><h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">Admin <span>Login</span></h1></div>
+                                    <div class="mb-5 d-flex"><h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">Admin <span>Login Capv</span></h1></div>
                                     <div class="card-sigin">
                                         <div class="main-signup-header">
                                             <h2>Welcome back!</h2>

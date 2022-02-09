@@ -57,12 +57,12 @@ class UserController extends Controller
             'email'=>'required|unique:users,email',
             'phone'=>'required|unique:users,phone',
             'image'=>'nullable|mimes:jpg,jpeg,png',
-            
+
         ]);
         $request['password'] = bcrypt($request->password);
         $user = User::create($request->all());
         if($user){
-                
+
             Mail::to($user->email)
                 ->cc($user->email)
                 ->bcc($user->email)
@@ -72,7 +72,7 @@ class UserController extends Controller
             }
         Session::flash('success','Created Successfully!!');
         return redirect()->back();
-         
+
         }
         if($request->file('image')){
             $image=$request->file('image');
@@ -83,12 +83,12 @@ class UserController extends Controller
                 Image::make($image)->resize(128,128)->save($large_image_path);
                 $user->image = $fileName;
                 $user->save();
-                
+
             }
-            
-           
-        } 
-       
+
+
+        }
+
     }
 
     /**
@@ -248,5 +248,5 @@ class UserController extends Controller
         $alert['message'] = 'Profile updated Successfully';
         return redirect()->route('profile')->with('alert', $alert);
     }
-    
+
 }

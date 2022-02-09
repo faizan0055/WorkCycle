@@ -13,16 +13,16 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/clear', function() {
+Route::get('/clear', function() {
 
-//    Artisan::call('cache:clear');
-//    Artisan::call('config:clear');
-//    Artisan::call('config:cache');
-//    Artisan::call('view:clear');
+   Artisan::call('cache:clear');
+   Artisan::call('config:clear');
+   Artisan::call('config:cache');
+   Artisan::call('view:clear');
 
-//    return "Cleared!";
+   return "Cleared!";
 
-// });
+});
 
 Route::get('/admin', 'HomeController@dashboard')->name('dashboard');
 
@@ -32,9 +32,8 @@ Route::post('login', 'LoginController@login');
 Route::post('admin_login', 'LoginController@adminLogin')->name('client.login');
 Route::get('logout', 'LoginController@logout')->name('logout');
 
-Route::get('/','FrontendController@index');
-//Route::get('auth/login', 'IndexController@index')->name('index');
-Route::get('admin/login', 'IndexController@index')->name('login');
+//Route::get('/','FrontendController@index');
+
 
 Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['auth', 'admin']], function () {
 
@@ -48,6 +47,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['aut
     // Route::resource('contact_us', 'ContactUsController');
     // //Questions
     // Route::resource('questions', 'QuestionController');
+    //Gallaries
+    Route::resource('galleries', 'GalleryController');
 });
 
 
@@ -68,8 +69,8 @@ Route::group(['prefix' => 'merchant', 'namespace' => 'merchant', 'middleware' =>
 
 });
 
-// Route::get('/', 'IndexController@index')->name('index');
-// Route::get('/', 'IndexController@index')->name('login');
+Route::get('/', 'IndexController@index')->name('index');
+Route::get('/', 'IndexController@index')->name('login');
 
 
 

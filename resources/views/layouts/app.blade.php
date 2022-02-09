@@ -12,7 +12,7 @@
     <meta name="Keywords" content=""/>
     <title> @yield('title') </title>
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset(env('ASSET_URL') .'images/logoforappstores.png')}}" type="image/x-icon"/>
+    <link rel="icon" href="{{ asset(env('ASSET_URL') .'images/logo.png')}}" type="image/x-icon"/>
     <!-- Icons css -->
     <link href="{{ asset(env('ASSET_URL') .'assets/css/icons.css')}}" rel="stylesheet">
     <!--  Owl-carousel css-->
@@ -50,10 +50,10 @@
     <aside class="app-sidebar sidebar-scroll">
         <div class="main-sidebar-header active">
             @if(auth()->user()->type=='admin')
-            <a class="desktop-logo logo-light active" href="{{url('/admin')}}"><img src="{{asset('images/logoforappstores.png')}}" class="main-logo" alt="logo"></a>
-                <a class="desktop-logo logo-dark active" href="{{url('/admin')}}"><img src="{{asset('images/logoforappstores.png')}}" class="main-logo dark-theme" alt="logo"></a>
-                <a class="logo-icon mobile-logo icon-light active" href="{{url('/admin')}}"><img src="{{asset('images/logoforappstores.png')}}" class="logo-icon" alt="logo"></a>
-                <a class="logo-icon mobile-logo icon-dark active" href="{{url('/admin')}}"><img src="{{asset('images/logoforappstores.png')}}" class="logo-icon dark-theme" alt="logo"></a>
+            <a class="desktop-logo logo-light active" href="{{url('/admin')}}"><img src="{{asset('images/logo.png')}}" class="main-logo" alt="logo"></a>
+                <a class="desktop-logo logo-dark active" href="{{url('/admin')}}"><img src="{{asset('images/logo.png')}}" class="main-logo dark-theme" alt="logo"></a>
+                <a class="logo-icon mobile-logo icon-light active" href="{{url('/admin')}}"><img src="{{asset('images/logo.png')}}" class="logo-icon" alt="logo"></a>
+                <a class="logo-icon mobile-logo icon-dark active" href="{{url('/admin')}}"><img src="{{asset('images/logo.png')}}" class="logo-icon dark-theme" alt="logo"></a>
             @else
             <a class="desktop-logo logo-light active" href="{{url('/client')}}"><img src="{{asset('images/logoforappstores.png')}}" class="main-logo" alt="logo"></a>
                 <a class="desktop-logo logo-dark active" href="{{url('/client')}}"><img src="{{asset('images/logoforappstores.png')}}" class="main-logo dark-theme" alt="logo"></a>
@@ -65,7 +65,7 @@
             <div class="app-sidebar__user clearfix">
                 <div class="dropdown user-pro-body">
                     <div class="">
-                        <img alt="user-img" class="avatar avatar-xl brround" src="@if(auth()->user()->type === 'admin') {{asset('images/logoforappstores.png')}} @else {{url('images/user_profile',auth()->user()->image)}} @endif"><span class="avatar-status profile-status bg-green"></span>
+                        <img alt="user-img" class="avatar avatar-xl brround" src="@if(auth()->user()->type === 'admin') {{asset('images/logo.png')}} @else {{url('images/user_profile',auth()->user()->image)}} @endif"><span class="avatar-status profile-status bg-green"></span>
                     </div>
                     <div class="user-info">
                         <h4 class="font-weight-semibold mt-3 mb-0">{{auth()->user()->name}}</h4>
@@ -86,9 +86,7 @@
                     <a class="side-menu__item" href="{{route('users.index')}}"><i class="fas fa-users side-menu__icon"></i> <span class="side-menu__label pt-3">All Users</span></a>
                 </li>
 
-                <li class="slide">
-                    <a class="side-menu__item" href="{{route('chapters.index')}}"><i class="fas fa-book-open side-menu__icon"></i> <span class="side-menu__label pt-3">Chapters</span></a>
-                </li>
+
 
                 @endif
             </ul>
@@ -120,17 +118,17 @@
                                     <a class="new nav-link full-screen-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-maximize"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg></a>
                                 </div>
                                 <div class="dropdown main-profile-menu nav nav-item nav-link">
-                                    <a class="profile-user d-flex" href=""><img alt="" src="{{asset('images/logoforappstores.png')}}"></a>
+                                    <a class="profile-user d-flex" href=""><img alt="" src="{{asset('images/logo.png')}}"></a>
                                     <div class="dropdown-menu">
                                         <div class="main-header-profile bg-primary p-3">
                                             <div class="d-flex wd-100p">
-                                                <div class="main-img-user"><img alt="" src="{{asset('images/logoforappstores.png')}}" class=""></div>
+                                                <div class="main-img-user"><img alt="" src="{{asset('images/logo.png')}}" class=""></div>
                                                 <div class="ml-3 my-auto">
                                                     <h6>{{auth()->user()->name}}</h6>
                                                 </div>
                                             </div>
                                         </div>
-                                        <a class="dropdown-item" href=""><i class="bx bx-cog"></i> Edit Profile</a>
+                                        <!-- <a class="dropdown-item" href=""><i class="bx bx-cog"></i> Edit Profile</a> -->
                                         <a class="dropdown-item" href="{{ route('logout') }}"><i class="bx bx-log-out"></i> Sign Out</a>
                                     </div>
                                 </div>
@@ -146,7 +144,7 @@
     <!-- Footer opened -->
     <div class="main-footer ht-40">
         <div class="container-fluid pd-t-0-f ht-100p">
-            <span>Copyright © {{date('Y')}} <a href="#">Boatbrain</a>. All rights reserved.</span>
+            <span>Copyright © {{date('Y')}} <a href="#">CapV</a>. All rights reserved.</span>
         </div>
     </div>
     <!-- Footer closed -->

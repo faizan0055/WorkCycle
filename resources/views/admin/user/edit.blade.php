@@ -106,16 +106,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group mb-3">
-                                        <p class="mg-b-10">Multiple Select</p>
-                                        <select multiple="multiple" class="testselect2" name="category_id[]">
-                                            @foreach(\App\Chapter::all() as $category)
-                                                <option value="{{$category->id}}" @if($user->categories->where('id',$category->id)->count() > 0) selected @endif >{{$category->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
+
 
                                 <div class="col-lg-6">
                                     <div class="form-group mb-3">

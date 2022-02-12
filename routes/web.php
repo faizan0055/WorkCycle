@@ -50,12 +50,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['aut
 
 
     Route::post('user/status', 'UserController@change_block_status')->name('user.status.update');
-    //chapters
-   // Route::resource('chapters', 'ChapterController');
-    //Contact Us
-    // Route::resource('contact_us', 'ContactUsController');
-    // //Questions
-    // Route::resource('questions', 'QuestionController');
+    //Category
+    Route::resource('categories', 'CategoryController');
+    //Property
+     Route::resource('properties', 'PropertyController');
+    // //Advertisements
+     Route::resource('advertisements', 'AdvertisementController');
     //Gallaries
     //Route::resource('galleries', 'GalleryController');
 });
@@ -81,6 +81,8 @@ Route::group(['prefix' => 'merchant', 'namespace' => 'merchant', 'middleware' =>
     Route::get('/Show_Profile', 'UserController@profile')->name('show.profile');
     Route::post('/Update_Profile', 'UserController@profile_update')->name('merchant.profile_update');
     Route::get('/Edit_Profile', 'UserController@edit')->name('edit.profile');
+    //Property
+    Route::resource('properties', 'PropertyController');
 
 });
 

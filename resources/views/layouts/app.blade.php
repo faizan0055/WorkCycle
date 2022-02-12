@@ -88,8 +88,14 @@
                     <a class="side-menu__item" href="{{route('users.index')}}"><i class="fas fa-users side-menu__icon"></i> <span class="side-menu__label pt-3">All Users</span></a>
                 </li>
                 <li class="slide">
-                    <a class="side-menu__item" href="#"><i class="fas fa-users side-menu__icon"></i> <span class="side-menu__label pt-3">Admin Panel</span></a>
+                    <a class="side-menu__item" href="{{route('categories.index')}}"><i class="fas fa-list-alt side-menu__icon"></i> <span class="side-menu__label pt-3">Cetegory</span></a>
                 </li>
+                    <li class="slide">
+                        <a class="side-menu__item" href="{{route('properties.index')}}"><i class="fas fa-building side-menu__icon"></i> <span class="side-menu__label pt-3">Property</span></a>
+                    </li>
+                    <li class="slide">
+                        <a class="side-menu__item" href="{{route('advertisements.index')}}"><i class="fas fa-building side-menu__icon"></i> <span class="side-menu__label pt-3">Advertisements</span></a>
+                    </li>
                 @endif
                 @if(auth()->check() and auth()->user()->type === 'client')
                 <li class="slide">
@@ -108,6 +114,9 @@
                 <li class="slide">
                     <a class="side-menu__item" href="#"><i class="fas fa-question-circle side-menu__icon"></i> <span class="side-menu__label pt-3">Merchant View</span></a>
                 </li>
+                 <li class="slide">
+                      <a class="side-menu__item" href="{{route('properties.index')}}"><i class="fas fa-building side-menu__icon"></i> <span class="side-menu__label pt-3">Property</span></a>
+                 </li>
                 @endif
             </ul>
         </div>

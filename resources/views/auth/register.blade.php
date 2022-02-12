@@ -10,7 +10,7 @@
     <meta name="Keywords" content="GamsKeys"/>
 
     <!-- Title -->
-    <title> Merchant Login </title>
+    <title> Registeration </title>
 
     <!-- Favicon -->
     <link rel="icon" href="{{asset('assets/img/brand/favicon.png')}}" type="image/x-icon"/>
@@ -61,7 +61,7 @@
             <div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-primary-transparent">
                 <div class="row wd-100p mx-auto text-center">
                     <div class="col-md-12 col-lg-12 col-xl-12 my-auto mx-auto wd-100p">
-                        <img src="{{asset('images/signup-1.png')}}" class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mx-auto" alt="logo">
+                        <img src="{{asset('images/login.png')}}" class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mx-auto" alt="logo">
                     </div>
                 </div>
             </div>
@@ -73,12 +73,12 @@
                         <div class="row">
                             <div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
                                 <div class="card-sigin">
-                                    <div class="mb-5 d-flex"><h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">Merchant <span>Login</span></h1></div>
+
                                     <div class="card-sigin">
                                         <div class="main-signup-header">
-                                            <h2>Welcome back!</h2>
-                                            <h5 class="font-weight-semibold mb-4">Please sign in to continue.</h5>
-                                            <form action="{{ route('register.now',Request()->code) }}" method="post">
+                                            <h2>User Registeration!</h2>
+                                            <h5 class="font-weight-semibold mb-4">Please sign Up to continue.</h5>
+                                            <form action="{{ route('register.store',Request()->code) }}" method="post" enctype="multipart/form-data">
                                                 @csrf
                                                 @if(session()->has('alert'))
                                                     <div class="alert alert-{{ session()->get('alert.type') }}">
@@ -109,18 +109,14 @@
                                                         </span>
                                                     @endif
                                                 </div>
-                                                <div class="form-group mb-3">
-                                                    <p class="mg-b-10">Select Categories</p>
-                                                    <select multiple="multiple" class="testselect2 {{ $errors->has('category_id') ? ' is-invalid' : ''}}" name="category_id[]">
-                                                        @foreach($categories as $cate)
-                                                            <option value="{{$cate->id}}">{{$cate->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @if($errors->has('category_id'))
+                                                <div class="form-group">
+                                                    <label>Image</label> <input type="file" name="image" class="form-control browse-file {{ $errors->has('image') ? ' is-invalid' : '' }}" placeholder="choose" readonly>
+                                                    @if($errors->has('image') || session()->has('alert'))
                                                         <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('category_id') }}</strong>
+                                                        <strong>{{ $errors->first('image') }}</strong>
                                                         </span>
                                                     @endif
+
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Password</label> <input class="form-control {{ $errors->has('password') ? 'is-invalid' : ''}}" placeholder="Enter your password" type="password" name="password">
@@ -130,7 +126,23 @@
                                                         </span>
                                                     @endif
                                                 </div>
-                                                <button class="btn btn-main-primary btn-block">Sign In</button>
+                                                <div class="form-group">
+                                                <div class="row mg-t-10">
+                                                    <div class="col-lg-3">
+                                                        <label class="rdiobox"><input name="type" type="radio" value="client" checked> <span>Buyer</span></label>
+                                                    </div>
+
+                                                    <div class="col-lg-3 mg-t-20 mg-lg-t-0">
+                                                        <label class="rdiobox"><input name="type" type="radio" value="merchant"> <span>Seller</span></label>
+                                                    </div>
+                                                    @if($errors->has('type') || session()->has('alert'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                         <strong>{{ $errors->first('type') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                                </div>
+                                                <button class="btn btn-main-primary btn-block">Register</button>
                                             </form>
                                         </div>
                                     </div>

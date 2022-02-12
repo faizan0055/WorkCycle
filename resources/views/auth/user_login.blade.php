@@ -5,12 +5,12 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Title -->
-    <title> Login | Real Estate </title>
-    <meta name="Author" content="Boat Brain">
-    <meta name="Keywords" content="Boat Brain,"/>
+    <title> User </title>
+    <meta name="Author" content="">
+    <meta name="Keywords" content=","/>
 
     <!-- Favicon -->
-    <link rel="icon" href="{{asset('images/logo.png')}}" type="image/x-icon"/>
+    <link rel="icon" href="{{asset('images/logoforappstores.png')}}" type="image/x-icon"/>
 
     <!-- Icons css -->
     <link href="{{asset('assets/css/icons.css')}}" rel="stylesheet">
@@ -66,12 +66,12 @@
                         <div class="row">
                             <div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
                                 <div class="card-sigin">
-                                    <div class="mb-5 d-flex"><h1 class="main-logo1 ml-1 mr-0 my-auto tx-28"><span>Login</span></h1></div>
+                                    <div class="mb-5 d-flex"><h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">User <span>Login</span></h1></div>
                                     <div class="card-sigin">
                                         <div class="main-signup-header">
                                             <h2>Welcome back!</h2>
                                             <h5 class="font-weight-semibold mb-4">Please sign in to continue.</h5>
-                                            <form action="{{ route('client.login') }}" method="post">
+                                            <form action="{{ route('user.login') }}" method="post">
                                                 @csrf
                                                 @if(session()->has('alert'))
                                                     <div class="alert alert-{{ session()->get('alert.type') }}">
@@ -94,16 +94,11 @@
                                                         </span>
                                                     @endif
                                                 </div><button class="btn btn-main-primary btn-block">Sign In</button>
-
                                                 <div class="row row-xs">
                                                     <div class="col-sm-12">
                                                     </div>
                                                 </div>
                                             </form>
-                                            <div class="main-signin-footer mt-5">
-														<p><a href="">Forgot password?</a></p>
-														<p>Don't have an account? <a href="{{url('register')}}">Create an Account</a></p>
-													</div>
                                         </div>
                                     </div>
                                 </div>

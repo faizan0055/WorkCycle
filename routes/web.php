@@ -11,6 +11,7 @@
 |
 */
 
+use Defuse\Crypto\RuntimeTests;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/clear', function() {
@@ -26,8 +27,11 @@ Route::get('/clear', function() {
 
 Route::get('/admin', 'HomeController@dashboard')->name('dashboard');
 
-Route::get('login',function(){ abort(404); });
-Route::get('admin_login',function(){ abort(404); });
+// Route::get('login',function(){ abort(404); });
+// Route::get('admin_login',function(){ abort(404); });
+//Route::get('ulogin','LoginController@userLoginView');
+//Route::post('user_login','LoginController@userLogin')->name('user.login');
+
 Route::post('login', 'LoginController@login');
 Route::post('admin_login', 'LoginController@adminLogin')->name('client.login');
 Route::get('logout', 'LoginController@logout')->name('logout');
@@ -40,15 +44,20 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['aut
     Route::resource('/', 'DashboardController');
     //USERS
     Route::resource('users', 'UserController');
+    Route::get('/Show_Profile', 'UserController@profile')->name('show.profile1');
+    Route::post('/Update_Profile', 'UserController@profile_update')->name('admin.profile_update');
+    Route::get('/Edit_Profile', 'UserController@edit')->name('edit.profile');
+
+
     Route::post('user/status', 'UserController@change_block_status')->name('user.status.update');
     //chapters
-    Route::resource('chapters', 'ChapterController');
+   // Route::resource('chapters', 'ChapterController');
     //Contact Us
     // Route::resource('contact_us', 'ContactUsController');
     // //Questions
     // Route::resource('questions', 'QuestionController');
     //Gallaries
-    Route::resource('galleries', 'GalleryController');
+    //Route::resource('galleries', 'GalleryController');
 });
 
 
@@ -56,8 +65,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['aut
 ///For Restaurant
 Route::group(['prefix' => 'client', 'namespace' => 'client', 'middleware' => ['auth', 'client']], function () {
     //profile
-    Route::get('profile', 'UserController@profile')->name('client.profile');
+    //Route::get('profile', 'UserController@profile')->name('client.profile');
     Route::resource('/', 'DashboardController');
+    Route::get('/Show_Profile', 'UserController@profile')->name('show.profile12');
+    Route::post('/Update_Profile', 'UserController@profile_update')->name('client.profile_update');
+    Route::get('/Edit_Profile', 'UserController@edit')->name('edit.profile');
 
 });
 
@@ -65,12 +77,17 @@ Route::group(['prefix' => 'merchant', 'namespace' => 'merchant', 'middleware' =>
     //Dashboard
     Route::resource('/', 'DashboardController');
     //Merchant Users
-    Route::resource('merchant-users', 'UserController');
+    //Route::resource('merchant-users', 'UserController');
+    Route::get('/Show_Profile', 'UserController@profile')->name('show.profile');
+    Route::post('/Update_Profile', 'UserController@profile_update')->name('merchant.profile_update');
+    Route::get('/Edit_Profile', 'UserController@edit')->name('edit.profile');
 
 });
 
 Route::get('/', 'IndexController@index')->name('index');
 Route::get('/', 'IndexController@index')->name('login');
+Route::resource('/register', 'RegisterController');
+
 
 
 

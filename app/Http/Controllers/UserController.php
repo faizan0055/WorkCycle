@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Country;
 use App\User;
 use App\History;
 use Illuminate\Support\Facades\DB;
@@ -88,4 +89,6 @@ class UserController extends Controller
         return $response;
 
     }
+
+
 }

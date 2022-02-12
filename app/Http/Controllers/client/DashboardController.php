@@ -14,8 +14,8 @@ class DashboardController extends Controller
 
     public function index(Request $request)
     {
-        $news=Question::latest()->first();
-        return view('client.home',compact('news'));
+        ;
+        return view('client.home');
     }
 
     /**

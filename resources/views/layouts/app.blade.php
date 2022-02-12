@@ -55,10 +55,10 @@
                 <a class="logo-icon mobile-logo icon-light active" href="{{url('/admin')}}"><img src="{{asset('images/logo.png')}}" class="logo-icon" alt="logo"></a>
                 <a class="logo-icon mobile-logo icon-dark active" href="{{url('/admin')}}"><img src="{{asset('images/logo.png')}}" class="logo-icon dark-theme" alt="logo"></a>
             @else
-            <a class="desktop-logo logo-light active" href="{{url('/client')}}"><img src="{{asset('images/logoforappstores.png')}}" class="main-logo" alt="logo"></a>
-                <a class="desktop-logo logo-dark active" href="{{url('/client')}}"><img src="{{asset('images/logoforappstores.png')}}" class="main-logo dark-theme" alt="logo"></a>
-                <a class="logo-icon mobile-logo icon-light active" href="{{url('/client')}}"><img src="{{asset('images/logoforappstores.png')}}" class="logo-icon" alt="logo"></a>
-                <a class="logo-icon mobile-logo icon-dark active" href="{{url('/client')}}"><img src="{{asset('images/logoforappstores.png')}}" class="logo-icon dark-theme" alt="logo"></a>
+            <a class="desktop-logo logo-light active" href="{{url('/client')}}"><img src="{{asset('images/')}}" class="main-logo" alt="logo"></a>
+                <a class="desktop-logo logo-dark active" href="{{url('/client')}}"><img src="{{asset('images/')}}" class="main-logo dark-theme" alt="logo"></a>
+                <a class="logo-icon mobile-logo icon-light active" href="{{url('/client')}}"><img src="{{asset('images/')}}" class="logo-icon" alt="logo"></a>
+                <a class="logo-icon mobile-logo icon-dark active" href="{{url('/client')}}"><img src="{{asset('images/')}}" class="logo-icon dark-theme" alt="logo"></a>
             @endif
         </div>
         <div class="main-sidemenu">
@@ -72,8 +72,10 @@
                         @if(auth()->user()->type=='admin')
                         <span class="mb-0 text-muted">Admin Panel</span>
                         @elseif(auth()->user()->type=='client')
-                            <span class="mb-0 @if(auth()->user()->credit>0) text-success @else text-danger @endif">${{number_format(auth()->user()->credit,2)}}</span>
-                        @endif
+                            <span class="mb-0 @if(auth()->user()->credit>0) text-success @else text-danger @endif">{{auth()->user()->type}}</span>
+                            @elseif(auth()->user()->type=='merchant')
+                            <span class="mb-0 @if(auth()->user()->credit>0) text-success @else text-danger @endif">{{auth()->user()->type}}</span>
+                            @endif
                     </div>
                 </div>
             </div>
@@ -85,9 +87,27 @@
                 <li class="slide">
                     <a class="side-menu__item" href="{{route('users.index')}}"><i class="fas fa-users side-menu__icon"></i> <span class="side-menu__label pt-3">All Users</span></a>
                 </li>
+                <li class="slide">
+                    <a class="side-menu__item" href="#"><i class="fas fa-users side-menu__icon"></i> <span class="side-menu__label pt-3">Admin Panel</span></a>
+                </li>
+                @endif
+                @if(auth()->check() and auth()->user()->type === 'client')
+                <li class="slide">
+                    <a class="side-menu__item" href="#"><i class="fas fa-tachometer-alt side-menu__icon"></i> <span class="side-menu__label pt-3">Dashboard</span></a>
+                </li>
 
+                <li class="slide">
+                    <a class="side-menu__item" href="#"><i class="fas fa-question-circle side-menu__icon"></i> <span class="side-menu__label pt-3">Client View</span></a>
+                </li>
+                @endif
+                @if(auth()->check() and auth()->user()->type === 'merchant')
+                <li class="slide">
+                    <a class="side-menu__item" href="#"><i class="fas fa-tachometer-alt side-menu__icon"></i> <span class="side-menu__label pt-3">Dashboard</span></a>
+                </li>
 
-
+                <li class="slide">
+                    <a class="side-menu__item" href="#"><i class="fas fa-question-circle side-menu__icon"></i> <span class="side-menu__label pt-3">Merchant View</span></a>
+                </li>
                 @endif
             </ul>
         </div>
@@ -104,6 +124,7 @@
                                 <a href="{{url('/admin')}}"><img src="{{asset('images/logoforappstores.png')}}" class="dark-logo-1" alt="logo"></a>
                                 <a href="{{url('/admin')}}"><img src="{{asset('images/logoforappstores.png')}}" class="logo-2" alt="logo"></a>
                                 <a href="{{url('/admin')}}"><img src="{{asset('images/logoforappstores.png')}}" class="dark-logo-2" alt="logo"></a>
+
                                 @endif
                             </div>
                             <div class="app-sidebar__toggle" data-toggle="sidebar">
@@ -118,16 +139,25 @@
                                     <a class="new nav-link full-screen-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-maximize"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg></a>
                                 </div>
                                 <div class="dropdown main-profile-menu nav nav-item nav-link">
-                                    <a class="profile-user d-flex" href=""><img alt="" src="{{asset('images/logo.png')}}"></a>
+                                    <a class="profile-user d-flex" href=""><img alt="" src="@if(auth()->user()->type === 'admin') {{asset('images/logo.png')}} @else {{url('images/user_profile',auth()->user()->image)}} @endif"></a>
                                     <div class="dropdown-menu">
                                         <div class="main-header-profile bg-primary p-3">
                                             <div class="d-flex wd-100p">
-                                                <div class="main-img-user"><img alt="" src="{{asset('images/logo.png')}}" class=""></div>
+                                                <div class="main-img-user"><img alt="" src="@if(auth()->user()->type === 'admin') {{asset('images/logo.png')}} @else {{url('images/user_profile',auth()->user()->image)}} @endif" class=""></div>
                                                 <div class="ml-3 my-auto">
                                                     <h6>{{auth()->user()->name}}</h6>
                                                 </div>
                                             </div>
                                         </div>
+                                        @if(auth()->user()->type=='admin')
+                                        <a class="dropdown-item" href="{{ route('show.profile1') }}"><i class="bx bx-cog"></i> Show Profile</a>
+                                        @endif
+                                        @if(auth()->user()->type=='client')
+                                         <a class="dropdown-item" href="{{ route('show.profile12') }}"><i class="bx bx-cog"></i> Show Client Profile</a>
+                                         @endif
+                                        @if(auth()->user()->type=='merchant')
+                                        <a class="dropdown-item" href="{{ route('show.profile') }}"><i class="bx bx-cog"></i> Show Profile</a>
+                                        @endif
                                         <!-- <a class="dropdown-item" href=""><i class="bx bx-cog"></i> Edit Profile</a> -->
                                         <a class="dropdown-item" href="{{ route('logout') }}"><i class="bx bx-log-out"></i> Sign Out</a>
                                     </div>

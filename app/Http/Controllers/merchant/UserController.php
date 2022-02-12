@@ -215,16 +215,17 @@ class UserController extends Controller
     }
     public function profile()
     {
-        $admin=User::where('type','admin')->first();
-        return view('admin.profile')->with('admin',$admin);
+        $admin=User::where('type','merchant')->first();
+        return view('merchant.profile')->with('admin',$admin);
     }
     public function profile_update(Request $request)
     {
+        dd($request->all());
         $request->validate([
             'name'=>'nullable',
             'image' => 'nullable|image|mimes:jpeg,png,jpg'
         ]);
-        $admin=User::where('type','admin')->first();
+        $admin=User::where('type','merchant')->first();
         if ($request->phone)
             if ($request->phone != $admin->phone) {
                 $request->validate([
@@ -242,7 +243,7 @@ class UserController extends Controller
         //         $request->request->remove('password');
         $admin->update($request->all());
         $image = $request->image;
-        $destination = 'images/profile_images';
+        $destination = 'images/user_profile';
         if ($request->hasFile('image')) {
             $filename = strtolower(
                 pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME)

@@ -37,7 +37,7 @@ class LoginController extends Controller
         if (auth()->check())
             return redirect('/');
         else
-            return view('frontend.login');
+            return view('auth.user_login');
     }
 
     public function adminLogin(Request $request)
@@ -46,7 +46,43 @@ class LoginController extends Controller
             'email' => 'required|email|max:191',
             'password' => 'required|string|max:191',
         ]);
-        $user = User::where('email',$request->email)->where('type','admin')->where('blocked','1')->first();
+        $request->validate([
+            'email' => 'required|email|max:191',
+            'password' => 'required|string|max:191',
+        ]);
+        if($user = User::where('email',$request->email)->where('type','client')->where('blocked','1')->first()){
+            if (!$user) {
+                $alert['type'] = 'danger';
+                $alert['heading'] = 'login failed';
+                $alert['message'] = 'Invalid Email or Password';
+                return redirect()->back()->with('alert', $alert);
+            }
+            if (!auth()->loginUsingId((password_verify($request->password, $user->password)) ? $user->id : 0)) {
+                $alert['type'] = 'danger';
+                $alert['heading'] = 'login failed';
+                $alert['message'] = 'Invalid  password';
+                return redirect()->back()->with('alert', $alert);
+            }
+            if (auth()->check() and auth()->user()->type === 'client')
+                return redirect('/client');
+        }
+        if($user = User::where('email',$request->email)->where('type','merchant')->where('blocked','1')->first()){
+            if (!$user) {
+                $alert['type'] = 'danger';
+                $alert['heading'] = 'login failed';
+                $alert['message'] = 'Invalid Email or Password';
+                return redirect()->back()->with('alert', $alert);
+            }
+            if (!auth()->loginUsingId((password_verify($request->password, $user->password)) ? $user->id : 0)) {
+                $alert['type'] = 'danger';
+                $alert['heading'] = 'login failed';
+                $alert['message'] = 'Invalid  password';
+                return redirect()->back()->with('alert', $alert);
+            }
+            if (auth()->check() and auth()->user()->type === 'merchant')
+                return redirect('/merchant');
+        }
+        if($user = User::where('email',$request->email)->where('type','admin')->where('blocked','1')->first()){
         if (!$user) {
             $alert['type'] = 'danger';
             $alert['heading'] = 'login failed';
@@ -61,6 +97,46 @@ class LoginController extends Controller
         }
         if (auth()->check() and auth()->user()->type === 'admin')
             return redirect('/admin');
+        }
+    }
+    public function userLogin(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|max:191',
+            'password' => 'required|string|max:191',
+        ]);
+        if($user = User::where('email',$request->email)->where('type','client')->where('blocked','1')->first()){
+        if (!$user) {
+            $alert['type'] = 'danger';
+            $alert['heading'] = 'login failed';
+            $alert['message'] = 'Invalid Email or Password';
+            return redirect()->back()->with('alert', $alert);
+        }
+        if (!auth()->loginUsingId((password_verify($request->password, $user->password)) ? $user->id : 0)) {
+            $alert['type'] = 'danger';
+            $alert['heading'] = 'login failed';
+            $alert['message'] = 'Invalid  password';
+            return redirect()->back()->with('alert', $alert);
+        }
+        if (auth()->check() and auth()->user()->type === 'client')
+            return redirect('/client');
+        }
+        if($user = User::where('email',$request->email)->where('type','merchant')->where('blocked','1')->first()){
+            if (!$user) {
+                $alert['type'] = 'danger';
+                $alert['heading'] = 'login failed';
+                $alert['message'] = 'Invalid Email or Password';
+                return redirect()->back()->with('alert', $alert);
+            }
+            if (!auth()->loginUsingId((password_verify($request->password, $user->password)) ? $user->id : 0)) {
+                $alert['type'] = 'danger';
+                $alert['heading'] = 'login failed';
+                $alert['message'] = 'Invalid  password';
+                return redirect()->back()->with('alert', $alert);
+            }
+            if (auth()->check() and auth()->user()->type === 'merchant')
+                return redirect('/merchant');
+            }
     }
 
     public function logout()
@@ -84,4 +160,5 @@ class LoginController extends Controller
        return redirect('/');
     }
     }
+
 }

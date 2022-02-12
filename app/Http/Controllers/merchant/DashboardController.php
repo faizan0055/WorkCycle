@@ -20,9 +20,8 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-        $check=AssignUser::where('user_id',auth()->user()->id)->pluck('assigned_id');
-        $amount=User::whereIn('id',$check)->sum('credit');
-        return view('merchant.home',compact('amount'));
+
+        return view('merchant.home');
 
     }
 

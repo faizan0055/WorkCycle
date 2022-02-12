@@ -145,6 +145,7 @@ class UserController extends Controller
             'address'=>'nullable',
             'image'=>'nullable|mimes:jpg,jpeg,png,svg',
         ]);
+        //dd($request->all());
         $request->request->remove('email');
         $request->request->remove('phone');
         $user = User::find($id);
@@ -171,6 +172,7 @@ class UserController extends Controller
                 $user->save();
             }
         }
+        $user->save();
         return redirect()->route('users.index');
     }
 
@@ -206,7 +208,7 @@ class UserController extends Controller
     }
     public function profile_update(Request $request)
     {
-        // dd($request->all());
+        //dd($request->all());
 
         $request->validate([
                 'name'=>'nullable',
@@ -246,7 +248,8 @@ class UserController extends Controller
         }
         $alert['type'] = 'success';
         $alert['message'] = 'Profile updated Successfully';
-        return redirect()->route('profile')->with('alert', $alert);
+        return redirect()->route('users.index')->with('alert', $alert);
     }
+
 
 }

@@ -28,7 +28,7 @@
                         <div class="card-body box-profile">
                             <div class="text-center">
                                 <img class="profile-user-img img-fluid img-circle"
-                                     src="{{auth()->user()->image ? url('/images/user_images/' . auth()->user()->image) : url('/assets/images/user-avatar.png')}}"
+                                     src="{{auth()->user()->image ? url('/images/user_profile/' . auth()->user()->image) : url('/assets/images/user_profile')}}"
                                      alt="User profile picture">
                             </div>
 
@@ -74,7 +74,7 @@
 
                                 <div class="active tab-pane" id="settings">
                                     <form class="form-horizontal" method="post"
-                                          action="{{ route('admin.profile_update') }}"
+                                          action="{{ route('merchant.profile_update',$admin->id) }}"
                                           enctype="multipart/form-data">
                                         @csrf
                                         <div class="row">
@@ -101,18 +101,18 @@
                                         </span>
                                                     @endif
                                                 </div>
-                                                <!-- <div class="form-group">
-                                                    <label for="password">Password</label>
-                                                    <input type="password" value="{{$admin->password}}"
-                                                           class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }} form-control-lg"
-                                                           name="password" id="password"/>
-                                                    @if($errors->has('password'))
-                                                        <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('password') }}</strong>
-                                                    </span>
-                                                    @endif
-                                                </div> -->
-                                               
+                                                {{--                                                <div class="form-group">--}}
+                                                {{--                                                    <label for="password">Password</label>--}}
+                                                {{--                                                    <input type="password" value="{{$admin->password}}"--}}
+                                                {{--                                                           class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }} form-control-lg"--}}
+                                                {{--                                                           name="password" id="password"/>--}}
+                                                {{--                                                    @if($errors->has('password'))--}}
+                                                {{--                                                        <span class="invalid-feedback" role="alert">--}}
+                                                {{--                                                    <strong>{{ $errors->first('password') }}</strong>--}}
+                                                {{--                                                    </span>--}}
+                                                {{--                                                    @endif--}}
+                                                {{--                                                </div>--}}
+
                                                 <div class="form-group">
                                                     <label for="phone">Phone</label>
                                                     <input type="tel" value="{{$admin->phone}}"

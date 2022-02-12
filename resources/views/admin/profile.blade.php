@@ -28,7 +28,7 @@
                         <div class="card-body box-profile">
                             <div class="text-center">
                                 <img class="profile-user-img img-fluid img-circle"
-                                     src="{{auth()->user()->image ? url('/images/user_images/' . auth()->user()->image) : url('/assets/images/user-avatar.png')}}"
+                                     src="{{auth()->user()->image ? url('/images/profile_images/' . auth()->user()->image) : url('/assets/images/profile_images')}}"
                                      alt="User profile picture">
                             </div>
 
@@ -101,7 +101,7 @@
                                         </span>
                                                     @endif
                                                 </div>
-                                                <!-- <div class="form-group">
+                                                <div class="form-group">
                                                     <label for="password">Password</label>
                                                     <input type="password" value="{{$admin->password}}"
                                                            class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }} form-control-lg"
@@ -111,8 +111,8 @@
                                                     <strong>{{ $errors->first('password') }}</strong>
                                                     </span>
                                                     @endif
-                                                </div> -->
-                                               
+                                                </div>
+
                                                 <div class="form-group">
                                                     <label for="phone">Phone</label>
                                                     <input type="tel" value="{{$admin->phone}}"

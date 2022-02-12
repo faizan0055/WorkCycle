@@ -1,78 +1,169 @@
-    @extends('layouts.app')
-@section('title','Profile')
+@extends('layouts.app')
+
 @section('profile_nav', 'active')
-
+@section('title','Profile')
 @section('content')
-
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Profile</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Profile</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
     <section class="content">
         <div class="container-fluid">
-            <div class="row  justify-content-center">
-                <div class="col-md-12 mt-5">
-                    <div class="row py-5" style="background-image: url({{asset('images/restaurant_images/').'/'.$restaurant->cover_image}}); background-size: cover; background-repeat: no-repeat; background-position: center; ">
-                        <div class="col-md-1">
-                            <img src="{{asset('images/restaurant_images/').'/'.$restaurant->logo}}" class="w-100 rounded" alt="logo">
+            <div class="row">
+                <div class="col-md-3">
+
+                    <!-- Profile Image -->
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <img class="profile-user-img img-fluid img-circle"
+                                     src="{{auth()->user()->image ? url('/images/user_profile/' . auth()->user()->image) : url('/assets/images/user_profile')}}"
+                                     alt="User profile picture">
+                            </div>
+
+                            <h3 class="profile-username text-center">{{$admin->name}}</h3>
+
                         </div>
-                        <div class="col-md-8 text-white">
-                            <h3>{{$restaurant->name}}</h3>
-                            <h5>{{$restaurant->slogan}}</h5>
-                            <p>{{$restaurant->address}}</p>
-                        </div>
+                        <!-- /.card-body -->
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-md-8 pl-0">
-                            <div class="card shadow">
-                                <div class="card-body">
-                                    <h4>Order Management</h4>
-                                    <hr>
-                                    <h5>Delivery Settings</h5>
-                                    <h6><b>Estimated Time</b></h6>
-                                    <p>{{$restaurant->avg_delivery_time}} mins</p>
-                                    <h6><b>Estimated Charges</b></h6>
-                                    <p>$ {{$restaurant->delivery_charges}}</p>
-                                </div>
-                                <hr>
-                                <div class="card-body">
-                                    <h4>Min Order</h4>
-                                    <hr>
-                                    <h6><b>Min Order Limit</b></h6>
-                                    <p>{{$restaurant->min_order}} orders</p>
-                                </div>
-                            </div>
+                    <!-- /.card -->
+
+                    <!-- About Me Box -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">About Me</h3>
                         </div>
-                        <div class="col-md-4 pr-0">
-                            <div class="card shadow">
-                                <div class="card-body">
-                                    <h4>Public Profile</h4>
-                                    <a href="{{route('client.edit_profile',$restaurant->id)}}"><p><i class="fa fa-pencil-alt"></i> Edit Profile</p></a>
-                                    <h5>About us</h5>
-                                    @if($restaurant->description)
-                                    <p>{{$restaurant->description}}</p>
-                                    @else
-                                    <p>You have not provided a descrription about your client</p>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="card shadow">
-                                <div class="card-body">
-                                    <h4>Contact</h4>
-                                    <p class="text-muted">This contact is used for contacting client.</p>
-                                    <p><i class="fa fa-phone-alt"></i> {{$restaurant->phone}}</p>
-                                    <p><i class="fa fa-envelope"></i> {{$restaurant->email}}</p>
-                                    <p><i class="fa fa-map-marker-alt"></i> {{$restaurant->address}}</p>
-                                </div>
-                            </div>
-                            <div class="card shadow">
-                                <div class="card-body">
-                                    <h4>Account Details</h4>
-                                    <p class="text-muted">This is your account details.</p>
-                                    <h6><b>Account Name</b></h6>
-                                    <p>{{$restaurant->account_name}}</p>
-                                    <h6><b>Account Number</b></h6>
-                                    <p>{{$restaurant->account_number}}</p>
-                                </div>
-                            </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <strong><i class="fas fa-phone mr-1"></i> Phone</strong>
+
+                            <p class="text-muted">
+                                {{$admin->phone}}
+                            </p>
+                            <strong><i class="fas fa-envelope mr-1"></i> Email</strong>
+
+                            <p class="text-muted">
+                                {{$admin->email}}
+                            </p>
+
+                            <hr>
+
                         </div>
+                        <!-- /.card-body -->
                     </div>
+                    <!-- /.card -->
+                </div>
+                <div class="col-md-9">
+                    <div class="card card-primary card-outline">
+                        <div class="card-header p-2">
+                            <h4>Edit Profile</h4>
+                        </div><!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="tab-content">
+
+                                <div class="active tab-pane" id="settings">
+                                    <form class="form-horizontal" method="post"
+                                          action="{{ route('client.profile_update',$admin->id) }}"
+                                          enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">Name</label>
+                                                    <input type="text" value="{{$admin->name}}"
+                                                           class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }} form-control-lg"
+                                                           name="name" id="name" placeholder="Name"/>
+                                                    @if($errors->has('name'))
+                                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('name') }}</strong>
+                                        </span>
+                                                    @endif
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="email">Email</label>
+                                                    <input type="email" value="{{$admin->email}}" readonly
+                                                           class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }} form-control-lg"
+                                                           name="email" id="email" placeholder="email"/>
+                                                    @if($errors->has('email'))
+                                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                                    @endif
+                                                </div>
+{{--                                                <div class="form-group">--}}
+{{--                                                    <label for="password">Password</label>--}}
+{{--                                                    <input type="password" value="{{$admin->password}}"--}}
+{{--                                                           class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }} form-control-lg"--}}
+{{--                                                           name="password" id="password"/>--}}
+{{--                                                    @if($errors->has('password'))--}}
+{{--                                                        <span class="invalid-feedback" role="alert">--}}
+{{--                                                    <strong>{{ $errors->first('password') }}</strong>--}}
+{{--                                                    </span>--}}
+{{--                                                    @endif--}}
+{{--                                                </div>--}}
+
+                                                <div class="form-group">
+                                                    <label for="phone">Phone</label>
+                                                    <input type="tel" value="{{$admin->phone}}"
+                                                           class="form-control {{ $errors->has('phone') ? ' is-invalid' : '' }} form-control-lg"
+                                                           name="phone" id="phone" minlength="13" maxlength="13" />
+                                                    @if($errors->has('phone'))
+                                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('phone') }}</strong>
+                                        </span>
+                                                    @endif
+                                                </div>
+                                                <!-- /.form-group -->
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-md-6" data-select2-id="40">
+                                                <div class="form-group">
+                                                    <label>Image</label>
+                                                    <div class="qr-el qr-el-3"
+                                                         style="min-height: auto;  box-shadow: 2px 0px 30px 5px rgba(0, 0, 0, 0.03); padding:25px; margin:0px 20px;">
+                                                        <label for="file-input" class="hoviringdell uploadBox"
+                                                               id="uploadTrigger"
+                                                               style="height: 110px; text-align:center; width:100%; border:dotted 2px #cccccc;">
+                                                            <img src="" style="width: 90px;" id="logo">
+                                                            <div class="uploadText" style="font-size: 12px;">
+                                                                <span style="color:#F69518;">Upload Image</span><br>
+                                                            </div>
+                                                        </label>
+                                                        <input type="file" id="file-input" name="image"
+                                                               onchange="logo1(this);">
+                                                        @if($errors->has('image'))
+                                                            <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('image') }}</strong>
+                                        </span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <!-- /.form-group -->
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-sm"
+                                                style="float:right;">Update
+                                        </button>
+                                    </form>
+                                </div>
+                                <!-- /.tab-pane -->
+                            </div>
+                            <!-- /.tab-content -->
+                        </div><!-- /.card-body -->
+                    </div>
+                    <!-- /.nav-tabs-custom -->
                 </div>
             </div>
         </div>

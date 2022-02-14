@@ -159,15 +159,20 @@
                                             </div>
                                         </div>
                                         @if(auth()->user()->type=='admin')
-                                        <a class="dropdown-item" href="{{ route('show.profile1') }}"><i class="bx bx-cog"></i> Show Profile</a>
+{{--                                            <a class="dropdown-item" href="{{ route('change.passa') }}"><i class="bx bx-cog"></i> Change Password</a>--}}
+{{--                                        <a class="dropdown-item" href="{{ route('show.profile1') }}"><i class="bx bx-cog"></i> Show Profile</a>--}}
                                         @endif
                                         @if(auth()->user()->type=='client')
-                                         <a class="dropdown-item" href="{{ route('show.profile12') }}"><i class="bx bx-cog"></i> Show Client Profile</a>
+{{--                                         <a class="dropdown-item" href="{{ route('show.profile12') }}"><i class="bx bx-cog"></i> Show Profile</a>--}}
+{{--                                            <a class="dropdown-item" href="{{ route('change.pass') }}"><i class="bx bx-cog"></i> Change Password</a>--}}
                                          @endif
                                         @if(auth()->user()->type=='merchant')
-                                        <a class="dropdown-item" href="{{ route('show.profile') }}"><i class="bx bx-cog"></i> Show Profile</a>
+{{--                                            <a class="dropdown-item" href="{{ route('change.passm') }}"><i class="bx bx-cog"></i> Change Password</a>--}}
+{{--                                        <a class="dropdown-item" href="{{ route('show.profile') }}"><i class="bx bx-cog"></i> Show Profile</a>--}}
                                         @endif
                                         <!-- <a class="dropdown-item" href=""><i class="bx bx-cog"></i> Edit Profile</a> -->
+                                        <a class="dropdown-item" href="{{ route('change.pass') }}"><i class="bx bx-cog"></i> Change Password</a>
+                                        <a class="dropdown-item" href="{{ route('show.profile') }}"><i class="bx bx-cog"></i> Show Profile Bahir</a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"><i class="bx bx-log-out"></i> Sign Out</a>
                                     </div>
                                 </div>

@@ -105,64 +105,6 @@ class UserController extends Controller
             }
         return redirect()->back();
     }
-    public function profile()
-    {
-        $admin=User::find(auth::user()->id);
-        return view('client.profile')->with('admin',$admin);
 
 
-    }
-    public function profile_update(Request $request)
-    {
-        //dd($request->all());
-
-        $request->validate([
-            'name'=>'nullable',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg'
-        ]);
-        $admin=User::find(auth::user()->id);
-        if ($request->phone)
-            if ($request->phone != $admin->phone) {
-                $request->validate([
-                    'phone' => 'required|string|max:191|unique:users',
-                ]);
-            } else
-                $request->request->remove('phone');
-         if ($request->old_password)
-             if (password_verify($request->old_password, $admin->password)) {
-                 $request->validate([
-                     'password' => 'required|string|min:6|max:191'
-                 ]);
-                 $request['password'] = bcrypt($request->password);
-             } else
-                 $request->request->remove('password');
-        $admin->update($request->all());
-        $image = $request->image;
-        $destination = 'images/user_profile';
-        if ($request->hasFile('image')) {
-            $filename = strtolower(
-                pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME)
-                . '-'
-                . uniqid()
-                . '.'
-                . $image->getClientOriginalExtension()
-            );
-            $image->move($destination, $filename);
-            str_replace(" ", "-", $filename);
-            $admin->image = $filename;
-            $admin->update();
-        }
-//        $alert['type'] = 'success';
-//        $alert['message'] = 'Profile updated Successfully';
-//        return redirect()->back()->with('alert', $alert);
-        Session::flash('success',' Profile Updated Successfully!!');
-        return redirect()->back();
-    }
-    public function edit($id)
-    {
-       // dd($id);
-        $user = User::findOrFail($id);
-        $countries=Country::get();
-        return view('admin.user.edit',compact('user','countries'));
-    }
 }

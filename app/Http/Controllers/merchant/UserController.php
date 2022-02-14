@@ -10,6 +10,7 @@ use App\User;
 use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
@@ -318,4 +319,5 @@ class UserController extends Controller
         $alert['message'] = 'Admin Delete Successfully';
         return redirect()->back()->with('alert', $alert);
     }
+
 }

@@ -35,20 +35,21 @@ Route::get('/admin', 'HomeController@dashboard')->name('dashboard');
 Route::post('login', 'LoginController@login');
 Route::post('admin_login', 'LoginController@adminLogin')->name('client.login');
 Route::get('logout', 'LoginController@logout')->name('logout');
-
+Route::get('/Show_Profile', 'UserController@profile1')->name('show.profile');
+Route::post('/Update_Profile', 'UserController@profile_update')->name('profile_update');
+Route::get('/Edit_Profile', 'UserController@edit')->name('edit.profile');
+Route::get('/password', 'UserController@changepass')->name('change.pass');
+//Route::get('/check-pwd','AdminController@chkPassword');
+Route::post('/update-password','UserController@updatePwd')->name('update.password');
 //Route::get('/','FrontendController@index');
 
 
 Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['auth', 'admin']], function () {
 
     Route::resource('/', 'DashboardController');
+
     //USERS
     Route::resource('users', 'UserController');
-    Route::get('/Show_Profile', 'UserController@profile')->name('show.profile1');
-    Route::post('/Update_Profile', 'UserController@profile_update')->name('admin.profile_update');
-    Route::get('/Edit_Profile', 'UserController@edit')->name('edit.profile');
-
-
     Route::post('user/status', 'UserController@change_block_status')->name('user.status.update');
     //Category
     Route::resource('categories', 'CategoryController');
@@ -59,20 +60,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['aut
     //Gallaries
     //Route::resource('galleries', 'GalleryController');
 });
-
-
-
 ///For Restaurant
 Route::group(['prefix' => 'client', 'namespace' => 'client', 'middleware' => ['auth', 'client']], function () {
     //profile
     //Route::get('profile', 'UserController@profile')->name('client.profile');
     Route::resource('/', 'DashboardController');
-    Route::get('/Show_Profile', 'UserController@profile')->name('show.profile12');
-    Route::post('/Update_Profile', 'UserController@profile_update')->name('client.profile_update');
-    Route::get('/Edit_Profile', 'UserController@edit')->name('edit.profile');
     // property View
     Route::resource('property', 'PropertyController');
-
 });
 
 Route::group(['prefix' => 'merchant', 'namespace' => 'merchant', 'middleware' => ['auth', 'merchant']], function () {
@@ -80,9 +74,6 @@ Route::group(['prefix' => 'merchant', 'namespace' => 'merchant', 'middleware' =>
     Route::resource('/', 'DashboardController');
     //Merchant Users
     //Route::resource('merchant-users', 'UserController');
-    Route::get('/Show_Profile', 'UserController@profile')->name('show.profile');
-    Route::post('/Update_Profile', 'UserController@profile_update')->name('merchant.profile_update');
-    Route::get('/Edit_Profile', 'UserController@edit')->name('edit.profile');
     //Property
     Route::resource('properties', 'PropertyController');
 

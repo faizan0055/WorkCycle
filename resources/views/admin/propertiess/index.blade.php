@@ -24,16 +24,16 @@
                         <h4 class="card-title mb-1">ADD CHAPTER</h4>
                     </div>
                     <div class="card-body pt-0">
-                        <form class="form-horizontal needs-validation" method="post" action="{{ isset($property) ? route('properties.update',$property->id) : route('properties.store') }}" enctype="multipart/form-data">
+                        <form class="form-horizontal needs-validation" method="post" action="{{ isset($propertys) ? route('propertiess.update',$propertys->id) : route('propertiess.store') }}" enctype="multipart/form-data">
                             @csrf
-                            @if (isset($property))
+                            @if (isset($propertys))
                                 @method('PUT')
                             @endif
                             <div class="row">
                                 <div class="col-4">
                                     <div class="form-group">
                                         <p class="mg-b-10">Name</p>
-                                        <input type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ isset($property) ? $property->name : '' }}" id="name" placeholder="Name">
+                                        <input type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ isset($propertys) ? $propertys->name : '' }}" id="name" placeholder="Name">
                                         @if($errors->has('name'))
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -47,13 +47,24 @@
                                         <select class="form-control select2 {{ $errors->has('category_id') ? ' is-invalid' : '' }}" name="category_id">
                                             <option label="Choose one"></option>
                                             @foreach(\App\Category::get() as $index => $ch)
-                                                <option value="{{$ch->id}}" @if($ch->id == isset($property) ? $property->category_id : ''){{'selected'}}@endif>{{$ch->name}}</option>
+                                                <option value="{{$ch->id}}" @if($ch->id == isset($property) ? $propertys->category_id : ''){{'selected'}}@endif>{{$ch->name}}</option>
                                             @endforeach
                                         </select>
                                         @if($errors->has('category_id'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('category_id') }}</strong>
                                             </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <p class="mg-b-10">Price</p>
+                                        <input type="text" class="form-control {{ $errors->has('price') ? ' is-invalid' : '' }}" name="price" value="{{ isset($propertys) ? $propertys->price : '' }}"  placeholder="Price">
+                                        @if($errors->has('price'))
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('price') }}</strong>
+                                    </span>
                                         @endif
                                     </div>
                                 </div>
@@ -67,11 +78,11 @@
                                     </div>
                                 </div>
                                 <div class="col-4">
-                                    @if(isset($property))
+                                    @if(isset($propertys))
                                         <div class="form-group mb-0 justify-content-center mt-2">
                                             <p class="mg-b-10">Image</p>
                                             <div class="input-group">
-                                                <img src="{{url('images/properties',$property->image)}}" width="100">
+                                                <img src="{{url('images/properties',$propertys->image)}}" width="100">
                                             </div>
                                             <span class="text-danger">{{$errors->first('image')}}</span>
                                         </div>
@@ -80,7 +91,7 @@
                             </div>
                             <div class="form-group mb-0 justify-content-end mt-2">
                                 <p class="mg-b-10">Description</p>
-                                <textarea class="form-control textarea1 {{ $errors->has('description') ? ' is-invalid' : '' }}" name="description">{{ isset($property) ? $property->description : '' }}</textarea>
+                                <textarea class="form-control textarea1 {{ $errors->has('description') ? ' is-invalid' : '' }}" name="description">{{ isset($propertys) ? $propertys->description : '' }}</textarea>
                                 @if($errors->has('description'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('description') }}</strong>
@@ -89,7 +100,7 @@
                             </div>
                             <div class="form-group mb-0 mt-3 justify-content-end">
                                 <div>
-                                    <button type="submit" class="btn btn-danger">{{ isset($property) ? 'Update Now' : 'Save Now' }}</button>
+                                    <button type="submit" class="btn btn-danger">{{ isset($propertys) ? 'Update Now' : 'Save Now' }}</button>
                                 </div>
                             </div>
                         </form>
@@ -114,19 +125,21 @@
                                         <th>IMAGE</th>
                                         <th>NAME</th>
                                         <th>DESCRIPTION</th>
+                                        <th>PRICE</th>
                                         <th>ACTION</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($properties as $index => $pro)
+                                    @foreach($propertiess as $index => $pro)
                                         <tr>
                                             <th scope="row">{{++$index}}</th>
                                             <td><img src="{{url('images/properties',$pro->image)}}" width="50"></td>
                                             <td>{{$pro->name}}</td>
                                             <td>{{$pro->description}}</td>
-                                            <td><a class="btn btn-sm btn-info" href="{{route('properties.edit',$pro->id)}}"><i class="fa fa-edit"></i></a>
+                                            <td>{{$pro->price}}</td>
+                                            <td><a class="btn btn-sm btn-info" href="{{route('propertiess.edit',$pro->id)}}"><i class="fa fa-edit"></i></a>
                                                 <a class="btn btn-sm btn-warning"  href="javascript:void(0);" onclick="$(this).find('form').submit();"><i class="fa fa-trash"></i>
-                                                    <form action="{{ route('properties.destroy', $pro->id) }}"
+                                                    <form action="{{ route('propertiess.destroy', $pro->id) }}"
                                                           method="post"
                                                           onsubmit="return confirm('Do you really want to delete this?');">
                                                         @csrf

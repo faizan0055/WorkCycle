@@ -53,7 +53,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['aut
     //Category
     Route::resource('categories', 'CategoryController');
     //Property
-     Route::resource('properties', 'PropertyController');
+     Route::resource('propertiess', 'PropertyController');
     // //Advertisements
      Route::resource('advertisements', 'AdvertisementController');
     //Gallaries
@@ -70,6 +70,8 @@ Route::group(['prefix' => 'client', 'namespace' => 'client', 'middleware' => ['a
     Route::get('/Show_Profile', 'UserController@profile')->name('show.profile12');
     Route::post('/Update_Profile', 'UserController@profile_update')->name('client.profile_update');
     Route::get('/Edit_Profile', 'UserController@edit')->name('edit.profile');
+    // property View
+    Route::resource('property', 'PropertyController');
 
 });
 

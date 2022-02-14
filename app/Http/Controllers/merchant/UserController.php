@@ -220,7 +220,7 @@ class UserController extends Controller
     }
     public function profile_update(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         $request->validate([
             'name'=>'nullable',
             'image' => 'nullable|image|mimes:jpeg,png,jpg'
@@ -257,9 +257,11 @@ class UserController extends Controller
             $admin->image = $filename;
             $admin->update();
         }
-        $alert['type'] = 'success';
-        $alert['message'] = 'Profile updated Successfully';
-        return redirect()->route('profile')->with('alert', $alert);
+//        $alert['type'] = 'success';
+//        $alert['message'] = 'Profile updated Successfully';
+//        return redirect()->route('profile')->with('alert', $alert);
+        Session::flash('success',' Profile Updated Successfully!!');
+        return redirect()->back();
 
     }
     public function admins()

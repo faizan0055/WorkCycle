@@ -72,9 +72,9 @@
                         @if(auth()->user()->type=='admin')
                         <span class="mb-0 text-muted">Admin Panel</span>
                         @elseif(auth()->user()->type=='client')
-                            <span class="mb-0 @if(auth()->user()->credit>0) text-success @else text-danger @endif">{{auth()->user()->type}}</span>
+                            <span class="mb-0 @if(auth()->user()->credit>0) text-success @else text-danger @endif">Buyer</span>
                             @elseif(auth()->user()->type=='merchant')
-                            <span class="mb-0 @if(auth()->user()->credit>0) text-success @else text-danger @endif">{{auth()->user()->type}}</span>
+                            <span class="mb-0 @if(auth()->user()->credit>0) text-success @else text-danger @endif">Seller</span>
                             @endif
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                     <a class="side-menu__item" href="{{route('categories.index')}}"><i class="fas fa-list-alt side-menu__icon"></i> <span class="side-menu__label pt-3">Cetegory</span></a>
                 </li>
                     <li class="slide">
-                        <a class="side-menu__item" href="{{route('properties.index')}}"><i class="fas fa-building side-menu__icon"></i> <span class="side-menu__label pt-3">Property</span></a>
+                        <a class="side-menu__item" href="{{route('propertiess.index')}}"><i class="fas fa-building side-menu__icon"></i> <span class="side-menu__label pt-3">Property</span></a>
                     </li>
                     <li class="slide">
                         <a class="side-menu__item" href="{{route('advertisements.index')}}"><i class="fas fa-building side-menu__icon"></i> <span class="side-menu__label pt-3">Advertisements</span></a>
@@ -99,16 +99,16 @@
                 @endif
                 @if(auth()->check() and auth()->user()->type === 'client')
                 <li class="slide">
-                    <a class="side-menu__item" href="#"><i class="fas fa-tachometer-alt side-menu__icon"></i> <span class="side-menu__label pt-3">Dashboard</span></a>
+                    <a class="side-menu__item" href="{{url('/client')}}"><i class="fas fa-tachometer-alt side-menu__icon"></i> <span class="side-menu__label pt-3">Dashboard</span></a>
                 </li>
 
                 <li class="slide">
-                    <a class="side-menu__item" href="#"><i class="fas fa-question-circle side-menu__icon"></i> <span class="side-menu__label pt-3">Client View</span></a>
+                    <a class="side-menu__item" href="{{route('property.index')}}"><i class="fas fa-question-circle side-menu__icon"></i> <span class="side-menu__label pt-3">Show Property</span></a>
                 </li>
                 @endif
                 @if(auth()->check() and auth()->user()->type === 'merchant')
                 <li class="slide">
-                    <a class="side-menu__item" href="#"><i class="fas fa-tachometer-alt side-menu__icon"></i> <span class="side-menu__label pt-3">Dashboard</span></a>
+                    <a class="side-menu__item" href="{{url('/merchant')}}"><i class="fas fa-tachometer-alt side-menu__icon"></i> <span class="side-menu__label pt-3">Dashboard</span></a>
                 </li>
 
                 <li class="slide">

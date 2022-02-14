@@ -108,6 +108,8 @@ class UserController extends Controller
     {
         $admin=User::where('type','client')->first();
         return view('client.profile')->with('admin',$admin);
+
+
     }
     public function profile_update(Request $request)
     {
@@ -125,14 +127,14 @@ class UserController extends Controller
                 ]);
             } else
                 $request->request->remove('phone');
-        // if ($request->old_password)
-        //     if (password_verify($request->old_password, $admin->password)) {
-        //         $request->validate([
-        //             'password' => 'required|string|min:6|max:191'
-        //         ]);
-        //         $request['password'] = bcrypt($request->password);
-        //     } else
-        //         $request->request->remove('password');
+         if ($request->old_password)
+             if (password_verify($request->old_password, $admin->password)) {
+                 $request->validate([
+                     'password' => 'required|string|min:6|max:191'
+                 ]);
+                 $request['password'] = bcrypt($request->password);
+             } else
+                 $request->request->remove('password');
         $admin->update($request->all());
         $image = $request->image;
         $destination = 'images/user_profile';
@@ -149,12 +151,15 @@ class UserController extends Controller
             $admin->image = $filename;
             $admin->update();
         }
-        $alert['type'] = 'success';
-        $alert['message'] = 'Profile updated Successfully';
-        return redirect()->back()->with('alert', $alert);
+//        $alert['type'] = 'success';
+//        $alert['message'] = 'Profile updated Successfully';
+//        return redirect()->back()->with('alert', $alert);
+        Session::flash('success',' Profile Updated Successfully!!');
+        return redirect()->back();
     }
     public function edit($id)
     {
+       // dd($id);
         $user = User::findOrFail($id);
         $countries=Country::get();
         return view('admin.user.edit',compact('user','countries'));

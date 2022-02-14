@@ -18,8 +18,8 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $properties=Property::all();
-        return view('admin.properties.index',compact('properties'));
+        $propertiess=Property::all();
+        return view('admin.propertiess.index',compact('propertiess'));
     }
 
     /**
@@ -45,6 +45,7 @@ class PropertyController extends Controller
             'image'=>'required|mimes:jpg,jpeg,png',
             'description'=>'required',
             'category_id'=>'required',
+            'price'=>'required',
         ]);
         //dd($request->all());
         $business_type = Property::create($request->all());
@@ -80,11 +81,11 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Property $property)
+    public function edit(Property $propertys)
     {
 
-        $properties=Property::all();
-        return view('admin.properties.index',compact('property','properties'));
+        $propertiess=Property::all();
+        return view('admin.propertiess.index',compact('propertys','propertiess'));
     }
 
     /**
@@ -94,17 +95,18 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Property $property)
+    public function update(Request $request, Property $propertys)
     {
         $request->validate([
             'name'=>'required',
             'description'=>'required',
             'image'=>'nullable|mimes:jpg,jpeg,png',
             'category_id'=>'required',
+            'price'=>'required',
         ]);
 
-        $image_small='images/properties/'.$property->image;
-        $property->update($request->all());
+        $image_small='images/properties/'.$propertys->image;
+        $propertys->update($request->all());
         if($request->file('image')){
             $image=$request->file('image');
             if($image->isValid()){
@@ -115,12 +117,12 @@ class PropertyController extends Controller
                 if(file_exists($image_small)){
                     unlink($image_small);
                 }
-                $property->image = $fileName;
-                $property->save();
+                $propertys->image = $fileName;
+                $propertys->save();
             }
         }
         Session::flash('success','Updated Successfully!!');
-        return redirect()->route('properties.index');
+        return redirect()->route('propertiess.index');
     }
 
     /**
@@ -129,13 +131,13 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Property $property)
+    public function destroy(Property $propertys)
     {
-        $image=url('images/properties/',$property->image);
+        $image=url('images/properties/',$propertys->image);
         if(file_exists($image)){
             unlink($image);
         }
-        $property->delete();
+        $propertys->delete();
         Session::flash('success','Deleted Successfully!!');
         return redirect()->back();
     }

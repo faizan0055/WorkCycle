@@ -58,6 +58,17 @@
                                     </div>
                                 </div>
                                 <div class="col-4">
+                                    <div class="form-group">
+                                        <p class="mg-b-10">Price</p>
+                                        <input type="text" class="form-control {{ $errors->has('price') ? ' is-invalid' : '' }}" name="price" value="{{ isset($property) ? $property->price : '' }}"  placeholder="Price">
+                                        @if($errors->has('price'))
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('price') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-4">
                                     <div class="form-group mb-0 justify-content-end">
                                         <p class="mg-b-10">Image</p>
                                         <div class="input-group file-browser">
@@ -113,6 +124,7 @@
                                         <th>ID</th>
                                         <th>IMAGE</th>
                                         <th>NAME</th>
+                                        <th>PRICE</th>
                                         <th>DESCRIPTION</th>
                                         <th>ACTION</th>
                                     </tr>
@@ -123,6 +135,7 @@
                                             <th scope="row">{{++$index}}</th>
                                             <td><img src="{{url('images/properties',$pro->image)}}" width="50"></td>
                                             <td>{{$pro->name}}</td>
+                                            <td>{{$pro->price}}</td>
                                             <td>{{$pro->description}}</td>
                                             <td><a class="btn btn-sm btn-info" href="{{route('properties.edit',$pro->id)}}"><i class="fa fa-edit"></i></a>
                                                 <a class="btn btn-sm btn-warning"  href="javascript:void(0);" onclick="$(this).find('form').submit();"><i class="fa fa-trash"></i>

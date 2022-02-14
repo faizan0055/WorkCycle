@@ -246,9 +246,11 @@ class UserController extends Controller
             $admin->image = $filename;
             $admin->update();
         }
-        $alert['type'] = 'success';
-        $alert['message'] = 'Profile updated Successfully';
-        return redirect()->route('users.index')->with('alert', $alert);
+//        $alert['type'] = 'success';
+//        $alert['message'] = 'Profile updated Successfully';
+//        return redirect()->route('users.index')->with('alert', $alert);
+        Session::flash('success',' Profile Updated Successfully!!');
+        return redirect()->back();
     }
 
 

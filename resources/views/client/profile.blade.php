@@ -2,6 +2,9 @@
 
 @section('profile_nav', 'active')
 @section('title','Profile')
+@section('style')
+    <link href="{{ asset(env('ASSET_URL') .'css/toastr.min.css')}}" rel="stylesheet" />
+@endsection
 @section('content')
     <div class="content-header">
         <div class="container-fluid">
@@ -32,7 +35,7 @@
                                      alt="User profile picture">
                             </div>
 
-                            <h3 class="profile-username text-center">{{$admin->name}}</h3>
+                            <h3 class="profile-username text-center">{{auth()->user()->name}}</h3>
 
                         </div>
                         <!-- /.card-body -->
@@ -49,12 +52,12 @@
                             <strong><i class="fas fa-phone mr-1"></i> Phone</strong>
 
                             <p class="text-muted">
-                                {{$admin->phone}}
+                                {{auth()->user()->phone}}
                             </p>
                             <strong><i class="fas fa-envelope mr-1"></i> Email</strong>
 
                             <p class="text-muted">
-                                {{$admin->email}}
+                                {{auth()->user()->email}}
                             </p>
 
                             <hr>
@@ -101,17 +104,17 @@
                                         </span>
                                                     @endif
                                                 </div>
-{{--                                                <div class="form-group">--}}
-{{--                                                    <label for="password">Password</label>--}}
-{{--                                                    <input type="password" value="{{$admin->password}}"--}}
-{{--                                                           class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }} form-control-lg"--}}
-{{--                                                           name="password" id="password"/>--}}
-{{--                                                    @if($errors->has('password'))--}}
-{{--                                                        <span class="invalid-feedback" role="alert">--}}
-{{--                                                    <strong>{{ $errors->first('password') }}</strong>--}}
-{{--                                                    </span>--}}
-{{--                                                    @endif--}}
-{{--                                                </div>--}}
+                                                <div class="form-group">
+                                                    <label for="password">Password</label>
+                                                    <input type="password" value="{{$admin->password}}"
+                                                           class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }} form-control-lg"
+                                                           name="password" id="password"/>
+                                                    @if($errors->has('password'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('password') }}</strong>
+                                                    </span>
+                                                    @endif
+                                                </div>
 
                                                 <div class="form-group">
                                                     <label for="phone">Phone</label>
@@ -184,5 +187,13 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+    </script>
+    <script src="{{ asset(env('ASSET_URL') .'js/toastr.min.js')}}"></script>
+    <script type="text/javascript">
+        @if (Session::has('success'))
+        toastr.success("{{Session::get('success')}}");
+        @elseif(Session::has('error'))
+        toastr.error("{{Session::get('error')}}");
+        @endif
     </script>
 @endsection

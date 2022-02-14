@@ -19,7 +19,7 @@ class PropertyController extends Controller
     public function index()
     {
         $properties=Property::all();
-        return view('admin.properties.index',compact('properties'));
+        return view('merchant.properties.index',compact('properties'));
     }
 
     /**
@@ -45,6 +45,7 @@ class PropertyController extends Controller
             'image'=>'required|mimes:jpg,jpeg,png',
             'description'=>'required',
             'category_id'=>'required',
+            'price'=>'required',
         ]);
         //dd($request->all());
         $business_type = Property::create($request->all());
@@ -84,7 +85,7 @@ class PropertyController extends Controller
     {
 
         $properties=Property::all();
-        return view('admin.properties.index',compact('property','properties'));
+        return view('merchant.properties.index',compact('property','properties'));
     }
 
     /**
@@ -101,6 +102,7 @@ class PropertyController extends Controller
             'description'=>'required',
             'image'=>'nullable|mimes:jpg,jpeg,png',
             'category_id'=>'required',
+            'price'=>'required',
         ]);
 
         $image_small='images/properties/'.$property->image;

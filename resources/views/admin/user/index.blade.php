@@ -48,9 +48,7 @@
                                                     <th class="wd-10p border-bottom-0">NAME</th>
                                                     <th class="wd-15p border-bottom-0">PHONE</th>
                                                     <th class="wd-15p border-bottom-0">EMAIL</th>
-                                                    <th class="wd-5p border-bottom-0">VIEW</th>
                                                     <th class="wd-5p border-bottom-0">STATUS</th>
-                                                    <th class="wd-5p border-bottom-0">FIND FROM</th>
                                                     <th class="wd-5p border-bottom-0">DATE & TIME</th>
                                                     <th class="wd-15p border-bottom-0">ACTION</th>
                                                 </tr>
@@ -62,9 +60,7 @@
                                                     <td>{{$user->name}}</td>
                                                     <td>{{$user->phone}}</td>
                                                     <td>{{$user->email}}</td>
-                                                    <td><a class="btn btn-sm btn-success" href="{{route('users.show',$user->id)}}"><i class="fa fa-eye"></i></a></td>
                                                     <td><a href="#" onclick="confirmAccpect({{$user->id}})">@if($user->blocked==1)<span class="badge badge-success">Active</span>@else <span class="badge badge-danger">Block</span> @endif</a></td>
-                                                    <td>{{$user->find_from}}</td>
                                                     <td>{{$user->created_at}}</td>
                                                     <td>
                                                         <a class="btn btn-sm btn-info" href="{{route('users.edit',$user->id)}}"><i class="fa fa-edit"></i></a>

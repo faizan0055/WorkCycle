@@ -5,6 +5,7 @@ namespace App\Http\Controllers\client;
 use App\Http\Controllers\Controller;
 use App\ContactUs;
 use App\User;
+use Auth;
 use App\Country;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -106,7 +107,7 @@ class UserController extends Controller
     }
     public function profile()
     {
-        $admin=User::where('type','client')->first();
+        $admin=User::find(auth::user()->id);
         return view('client.profile')->with('admin',$admin);
 
 
@@ -119,7 +120,7 @@ class UserController extends Controller
             'name'=>'nullable',
             'image' => 'nullable|image|mimes:jpeg,png,jpg'
         ]);
-        $admin=User::where('type','client')->first();
+        $admin=User::find(auth::user()->id);
         if ($request->phone)
             if ($request->phone != $admin->phone) {
                 $request->validate([

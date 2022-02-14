@@ -7,6 +7,7 @@ use App\Chapter;
 use App\Country;
 use App\RegisterLinks;
 use App\User;
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -215,7 +216,7 @@ class UserController extends Controller
     }
     public function profile()
     {
-        $admin=User::where('type','merchant')->first();
+        $admin=User::find(auth::user()->id);
         return view('merchant.profile')->with('admin',$admin);
     }
     public function profile_update(Request $request)
@@ -225,7 +226,7 @@ class UserController extends Controller
             'name'=>'nullable',
             'image' => 'nullable|image|mimes:jpeg,png,jpg'
         ]);
-        $admin=User::where('type','merchant')->first();
+        $admin=User::find(auth::user()->id);
         if ($request->phone)
             if ($request->phone != $admin->phone) {
                 $request->validate([

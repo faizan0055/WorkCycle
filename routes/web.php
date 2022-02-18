@@ -35,6 +35,7 @@ Route::get('/admin', 'HomeController@dashboard')->name('dashboard');
 Route::post('login', 'LoginController@login');
 Route::post('admin_login', 'LoginController@adminLogin')->name('client.login');
 Route::get('logout', 'LoginController@logout')->name('logout');
+Route::get('forget_password', 'ForgetPassController@index')->name('forget.pass');
 Route::get('/Show_Profile', 'UserController@profile1')->name('show.profile');
 Route::post('/Update_Profile', 'UserController@profile_update')->name('profile_update');
 Route::get('/Edit_Profile', 'UserController@edit')->name('edit.profile');
@@ -80,9 +81,18 @@ Route::group(['prefix' => 'merchant', 'namespace' => 'merchant', 'middleware' =>
 });
 
 Route::get('/', 'IndexController@index')->name('index');
-Route::get('/', 'IndexController@index')->name('login');
+Route::get('/login', 'IndexController@index')->name('login');
 Route::resource('/register', 'RegisterController');
-
+//FrontEnd Routes
+Route::get('/', 'FrontEndController@index')->name('index');
+Route::get('/about_page', 'FrontEndController@about')->name('about.page');
+Route::get('/property_grid', 'FrontEndController@propertyGrid')->name('property.grid');
+Route::get('/blog_grid', 'FrontEndController@blogGrid')->name('blog.grid');
+Route::get('/property_single', 'FrontEndController@ProperSingle')->name('property.single');
+Route::get('/blog_single', 'FrontEndController@BlogSingle')->name('blog.single');
+Route::get('/agents_grid', 'FrontEndController@agentGrid')->name('agent.grid');
+Route::get('/agent_single', 'FrontEndController@agentSigle')->name('agent.single');
+Route::get('/contact', 'FrontEndController@contact')->name('contact');
 
 
 

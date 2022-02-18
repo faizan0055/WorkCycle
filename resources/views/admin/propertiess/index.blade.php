@@ -69,6 +69,17 @@
                                     </div>
                                 </div>
                                 <div class="col-4">
+                                    <div class="form-group">
+                                        <p class="mg-b-10">Type</p>
+                                        <input type="text" class="form-control {{ $errors->has('type') ? ' is-invalid' : '' }}" name="type" value="{{ isset($propertys) ? $propertys->type : '' }}"  placeholder="Sell Or Rent">
+                                        @if($errors->has('type'))
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('type') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-4">
                                     <div class="form-group mb-0 justify-content-end">
                                         <p class="mg-b-10">Image</p>
                                         <div class="input-group file-browser">
@@ -124,8 +135,9 @@
                                         <th>ID</th>
                                         <th>IMAGE</th>
                                         <th>NAME</th>
-                                        <th>DESCRIPTION</th>
                                         <th>PRICE</th>
+                                        <th>TYPE</th>
+                                        <th>DESCRIPTION</th>
                                         <th>ACTION</th>
                                     </tr>
                                     </thead>
@@ -135,8 +147,9 @@
                                             <th scope="row">{{++$index}}</th>
                                             <td><img src="{{url('images/properties',$pro->image)}}" width="50"></td>
                                             <td>{{$pro->name}}</td>
-                                            <td>{{$pro->description}}</td>
                                             <td>{{$pro->price}}</td>
+                                            <td>{{$pro->type}}</td>
+                                            <td>{{$pro->description}}</td>
                                             <td><a class="btn btn-sm btn-info" href="{{route('propertiess.edit',$pro->id)}}"><i class="fa fa-edit"></i></a>
                                                 <a class="btn btn-sm btn-warning"  href="javascript:void(0);" onclick="$(this).find('form').submit();"><i class="fa fa-trash"></i>
                                                     <form action="{{ route('propertiess.destroy', $pro->id) }}"

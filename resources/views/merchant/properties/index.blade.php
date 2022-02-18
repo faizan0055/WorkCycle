@@ -47,7 +47,7 @@
                                         <select class="form-control select2 {{ $errors->has('category_id') ? ' is-invalid' : '' }}" name="category_id">
                                             <option label="Choose one"></option>
                                             @foreach(\App\Category::get() as $index => $ch)
-                                                <option value="{{$ch->id}}" @if($ch->id == isset($property) ? $property->category_id : ''){{'selected'}}@endif>{{$ch->name}}</option>
+                                                <option value="{{$ch->id}}" @if(isset($property) && $ch->id == $property->category_id){{'selected'}}@endif>{{$ch->name}}</option>
                                             @endforeach
                                         </select>
                                         @if($errors->has('category_id'))
@@ -64,6 +64,17 @@
                                         @if($errors->has('price'))
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('price') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <p class="mg-b-10">Type</p>
+                                        <input type="text" class="form-control {{ $errors->has('type') ? ' is-invalid' : '' }}" name="type" value="{{ isset($property) ? $property->type : '' }}"  placeholder="Sell Or Rent">
+                                        @if($errors->has('type'))
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('type') }}</strong>
                                     </span>
                                         @endif
                                     </div>
@@ -125,6 +136,7 @@
                                         <th>IMAGE</th>
                                         <th>NAME</th>
                                         <th>PRICE</th>
+                                        <th>Type</th>
                                         <th>DESCRIPTION</th>
                                         <th>ACTION</th>
                                     </tr>
@@ -136,6 +148,7 @@
                                             <td><img src="{{url('images/properties',$pro->image)}}" width="50"></td>
                                             <td>{{$pro->name}}</td>
                                             <td>{{$pro->price}}</td>
+                                            <td>{{$pro->type}}</td>
                                             <td>{{$pro->description}}</td>
                                             <td><a class="btn btn-sm btn-info" href="{{route('properties.edit',$pro->id)}}"><i class="fa fa-edit"></i></a>
                                                 <a class="btn btn-sm btn-warning"  href="javascript:void(0);" onclick="$(this).find('form').submit();"><i class="fa fa-trash"></i>

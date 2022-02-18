@@ -46,6 +46,8 @@ class PropertyController extends Controller
             'description'=>'required',
             'category_id'=>'required',
             'price'=>'required',
+            'type'=>'required',
+
         ]);
         //dd($request->all());
         $business_type = Property::create($request->all());
@@ -103,6 +105,7 @@ class PropertyController extends Controller
             'image'=>'nullable|mimes:jpg,jpeg,png',
             'category_id'=>'required',
             'price'=>'required',
+            'type'=>'required',
         ]);
 
         $image_small='images/properties/'.$propertys->image;

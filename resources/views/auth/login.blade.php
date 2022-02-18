@@ -10,7 +10,7 @@
     <meta name="Keywords" content="Boat Brain,"/>
 
     <!-- Favicon -->
-    <link rel="icon" href="{{asset('images/logo.png')}}" type="image/x-icon"/>
+    <link rel="icon" href="{{asset('images/logo1.png')}}" type="image/x-icon"/>
 
     <!-- Icons css -->
     <link href="{{asset('assets/css/icons.css')}}" rel="stylesheet">
@@ -101,7 +101,7 @@
                                                 </div>
                                             </form>
                                             <div class="main-signin-footer mt-5">
-														<p><a href="">Forgot password?</a></p>
+														<p><a href="{{route('forget.pass')}}">Forgot password?</a></p>
 														<p>Don't have an account? <a href="{{url('register')}}">Create an Account</a></p>
 													</div>
                                         </div>

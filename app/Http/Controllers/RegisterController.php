@@ -45,7 +45,7 @@ class RegisterController extends Controller
             //'country_id'=>'required',
             'password'=>'required|min:6',
             'email'=>'required|unique:users,email',
-            'phone'=>'required|unique:users,phone',
+            'phone'=>'required|string|max:11|unique:users',
             'image'=>'nullable',
 
         ]);

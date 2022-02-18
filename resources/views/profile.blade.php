@@ -104,17 +104,17 @@
                                         </span>
                                                     @endif
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="password">Password</label>
-                                                    <input type="password" value="{{$admin->password}}"
-                                                           class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }} form-control-lg"
-                                                           name="password" id="password"/>
-                                                    @if($errors->has('password'))
-                                                        <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('password') }}</strong>
-                                                    </span>
-                                                    @endif
-                                                </div>
+{{--                                                <div class="form-group">--}}
+{{--                                                    <label for="password">Password</label>--}}
+{{--                                                    <input type="password" value="{{$admin->password}}"--}}
+{{--                                                           class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }} form-control-lg"--}}
+{{--                                                           name="password" id="password"/>--}}
+{{--                                                    @if($errors->has('password'))--}}
+{{--                                                        <span class="invalid-feedback" role="alert">--}}
+{{--                                                    <strong>{{ $errors->first('password') }}</strong>--}}
+{{--                                                    </span>--}}
+{{--                                                    @endif--}}
+{{--                                                </div>--}}
 
                                                 <div class="form-group">
                                                     <label for="phone">Phone</label>

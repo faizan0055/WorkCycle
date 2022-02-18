@@ -10,8 +10,8 @@
         <div class="container-fluid">
             <div class="row justify-content-center ">
                 <div class="card col-md-4 mt-5">
-                    <div class="card-header">
-                        <h3>Admin Profile</h3>
+                    <div class="card-header bg-primary text-center mt-2">
+                        <h3 style="color: white">Change Password</h3>
                     </div>
                     <div class="card-body">
                         <form role="form" action="{{route('update.password')}}" method="POST">
@@ -30,7 +30,7 @@
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success">Update</button>
+                                <button type="submit" class="btn btn-primary">Update Password</button>
                             </div>
                         </form>
                     </div>

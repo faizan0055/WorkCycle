@@ -18,7 +18,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $properties=Property::all();
+        $properties=Property::where('user_id', auth()->user()->id)->get();
         return view('merchant.properties.index',compact('properties'));
     }
 
@@ -40,14 +40,19 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $request->validate([
             'name'=>'required',
             'image'=>'required|mimes:jpg,jpeg,png',
             'description'=>'required',
             'category_id'=>'required',
             'price'=>'required',
+            'type'=>'required',
+
+           // 'user_id'=>'required',
         ]);
         //dd($request->all());
+        $request['user_id'] = auth()->user()->id;
         $business_type = Property::create($request->all());
         if($request->file('image')){
             $image=$request->file('image');
@@ -84,7 +89,7 @@ class PropertyController extends Controller
     public function edit(Property $property)
     {
 
-        $properties=Property::all();
+        $properties=Property::where('user_id', auth()->user()->id)->get();
         return view('merchant.properties.index',compact('property','properties'));
     }
 
@@ -97,12 +102,14 @@ class PropertyController extends Controller
      */
     public function update(Request $request, Property $property)
     {
+
         $request->validate([
             'name'=>'required',
             'description'=>'required',
             'image'=>'nullable|mimes:jpg,jpeg,png',
             'category_id'=>'required',
             'price'=>'required',
+            'type'=>'required',
         ]);
 
         $image_small='images/properties/'.$property->image;

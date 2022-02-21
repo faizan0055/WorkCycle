@@ -98,6 +98,17 @@ class LoginController extends Controller
         if (auth()->check() and auth()->user()->type === 'admin')
             return redirect('/admin');
         }
+        else{
+            if (!$user) {
+                $alert['type'] = 'danger';
+                $alert['heading'] = 'login failed';
+                $alert['message'] = 'Login Failed Please Try Again letter';
+                return redirect()->back()->with('alert', $alert);
+            }
+    }
+
+
+
     }
     public function userLogin(Request $request)
     {

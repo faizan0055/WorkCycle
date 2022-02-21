@@ -59,32 +59,32 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                                <div class="form-group mb-3">
-                                                    <label>Country*</label>
-                                                    <select class="form-control select2" name="country_id">
-                                                        @foreach($countries as $cate)
-                                                            <option value="{{$cate->id}}" @if($user->country_id==$cate->id) selected @else @endif>{{$cate->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @if($errors->has('username'))
-                                                        <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('username') }}</strong>
-                                            </span>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group mb-3">
-                                        <label>Password*</label>
-                                        <input type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" name="password" value="{{ old('password') }}" placeholder="Password" >
-                                        @if($errors->has('password'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('password') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
+{{--                                <div class="col-lg-6">--}}
+{{--                                                <div class="form-group mb-3">--}}
+{{--                                                    <label>Country*</label>--}}
+{{--                                                    <select class="form-control select2" name="country_id">--}}
+{{--                                                        @foreach($countries as $cate)--}}
+{{--                                                            <option value="{{$cate->id}}" @if($user->country_id==$cate->id) selected @else @endif>{{$cate->name}}</option>--}}
+{{--                                                        @endforeach--}}
+{{--                                                    </select>--}}
+{{--                                                    @if($errors->has('username'))--}}
+{{--                                                        <span class="invalid-feedback" role="alert">--}}
+{{--                                                <strong>{{ $errors->first('username') }}</strong>--}}
+{{--                                            </span>--}}
+{{--                                                    @endif--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                <div class="col-lg-6">--}}
+{{--                                    <div class="form-group mb-3">--}}
+{{--                                        <label>Password*</label>--}}
+{{--                                        <input type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" name="password" value="{{ old('password') }}" placeholder="Password" >--}}
+{{--                                        @if($errors->has('password'))--}}
+{{--                                            <span class="invalid-feedback" role="alert">--}}
+{{--                                                <strong>{{ $errors->first('password') }}</strong>--}}
+{{--                                            </span>--}}
+{{--                                        @endif--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="col-lg-6">
                                     <div class="form-group mb-3">
                                         <label>Email*</label>

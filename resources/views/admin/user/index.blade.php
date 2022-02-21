@@ -21,13 +21,13 @@
                                 <h4 class="content-title mb-0 my-auto">Users</h4><span class="text-muted mt-1 tx-13 ml-2 mb-0">/ All Users</span>
                             </div>
                         </div>
-                        <div class="d-flex my-xl-auto right-content">
-                            <div class="mb-3 mb-xl-0">
-                                <div class="btn-group dropdown">
-                                    <a href="{{route('users.create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add New User</a>
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="d-flex my-xl-auto right-content">--}}
+{{--                            <div class="mb-3 mb-xl-0">--}}
+{{--                                <div class="btn-group dropdown">--}}
+{{--                                    <a href="{{route('users.create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add New User</a>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     </div>
                     <!-- breadcrumb -->
                     <!-- row opened -->
@@ -49,6 +49,7 @@
                                                     <th class="wd-15p border-bottom-0">PHONE</th>
                                                     <th class="wd-15p border-bottom-0">EMAIL</th>
                                                     <th class="wd-5p border-bottom-0">STATUS</th>
+                                                    <th class="wd-5p border-bottom-0">TYPE</th>
                                                     <th class="wd-5p border-bottom-0">DATE & TIME</th>
                                                     <th class="wd-15p border-bottom-0">ACTION</th>
                                                 </tr>
@@ -61,6 +62,7 @@
                                                     <td>{{$user->phone}}</td>
                                                     <td>{{$user->email}}</td>
                                                     <td><a href="#" onclick="confirmAccpect({{$user->id}})">@if($user->blocked==1)<span class="badge badge-success">Active</span>@else <span class="badge badge-danger">Block</span> @endif</a></td>
+                                                    <td>@if($user->type=="admin") Admin @elseif($user->type=="client") Buyer @else Seller @endif</td>
                                                     <td>{{$user->created_at}}</td>
                                                     <td>
                                                         <a class="btn btn-sm btn-info" href="{{route('users.edit',$user->id)}}"><i class="fa fa-edit"></i></a>

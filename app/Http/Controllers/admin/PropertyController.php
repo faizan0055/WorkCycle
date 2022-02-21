@@ -83,10 +83,11 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Property $propertys)
+    public function edit($propertys)
     {
-
+        //dd($propertys);
         $propertiess=Property::all();
+        $propertys=Property::findOrFail($propertys);
         return view('admin.propertiess.index',compact('propertys','propertiess'));
     }
 

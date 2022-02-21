@@ -96,6 +96,9 @@
                     <li class="slide">
                         <a class="side-menu__item" href="{{route('advertisements.index')}}"><i class="fas fa-building side-menu__icon"></i> <span class="side-menu__label pt-3">Advertisements</span></a>
                     </li>
+                    <li class="slide">
+                        <a class="side-menu__item" href="{{route('consults1.index')}}"><i class="fas fa-building side-menu__icon"></i> <span class="side-menu__label pt-3">Consults</span></a>
+                    </li>
                 @endif
                 @if(auth()->check() and auth()->user()->type === 'client')
                 <li class="slide">
@@ -105,6 +108,9 @@
                 <li class="slide">
                     <a class="side-menu__item" href="{{route('property.index')}}"><i class="fas fa-question-circle side-menu__icon"></i> <span class="side-menu__label pt-3">Show Property</span></a>
                 </li>
+                        <li class="slide">
+                            <a class="side-menu__item" href="{{route('consults.index')}}"><i class="fas fa-building side-menu__icon"></i> <span class="side-menu__label pt-3">Consults</span></a>
+                        </li>
                 @endif
                 @if(auth()->check() and auth()->user()->type === 'merchant')
                 <li class="slide">
@@ -113,6 +119,9 @@
                  <li class="slide">
                       <a class="side-menu__item" href="{{route('properties.index')}}"><i class="fas fa-building side-menu__icon"></i> <span class="side-menu__label pt-3">Property</span></a>
                  </li>
+{{--                        <li class="slide">--}}
+{{--                            <a class="side-menu__item" href="{{route('consults2.index')}}"><i class="fas fa-building side-menu__icon"></i> <span class="side-menu__label pt-3">Consults</span></a>--}}
+{{--                        </li>--}}
                 @endif
             </ul>
         </div>

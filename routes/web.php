@@ -58,8 +58,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['aut
      Route::resource('propertiess', 'PropertyController');
     // //Advertisements
      Route::resource('advertisements', 'AdvertisementController');
-    //Gallaries
-    //Route::resource('galleries', 'GalleryController');
+    //Consults
+    Route::resource('consults1', 'ConsultController');
 });
 ///For Restaurant
 Route::group(['prefix' => 'client', 'namespace' => 'client', 'middleware' => ['auth', 'client']], function () {
@@ -68,6 +68,8 @@ Route::group(['prefix' => 'client', 'namespace' => 'client', 'middleware' => ['a
     Route::resource('/', 'DashboardController');
     // property View
     Route::resource('property', 'PropertyController');
+    //Consults
+    Route::resource('consults', 'ConsultController');
 });
 
 Route::group(['prefix' => 'merchant', 'namespace' => 'merchant', 'middleware' => ['auth', 'merchant']], function () {
@@ -77,12 +79,17 @@ Route::group(['prefix' => 'merchant', 'namespace' => 'merchant', 'middleware' =>
     //Route::resource('merchant-users', 'UserController');
     //Property
     Route::resource('properties', 'PropertyController');
+    //Consults
+//    Route::resource('consults2', 'ConsultController');
 
 });
-
+//login
 Route::get('/', 'IndexController@index')->name('index');
 Route::get('/login', 'IndexController@index')->name('login');
+
+//Register
 Route::resource('/register', 'RegisterController');
+
 //FrontEnd Routes
 Route::get('/', 'FrontEndController@index')->name('index');
 Route::get('/about_page', 'FrontEndController@about')->name('about.page');

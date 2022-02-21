@@ -27,10 +27,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users=User::where('type','client')->get();
+        $users=User::all();
         return view('admin.user.index')->with('users',$users);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -139,6 +138,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $request->validate([
             'name'=>'required',
             'country_id'=>'required',
@@ -174,6 +174,7 @@ class UserController extends Controller
                 $user->save();
             }
         }
+        dd($user);
         $user->save();
         return redirect()->route('users.index');
     }

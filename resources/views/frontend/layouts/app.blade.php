@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>EstateAgency Bootstrap Template - Index</title>
+    <title>RealEstateAgency</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -137,7 +137,7 @@
             <span></span>
             <span></span>
         </button>
-        <a class="navbar-brand text-brand" href="index.html"><span class="color-b">R</span>eal<span class="color-b">E</span>state<span class="color-b">Agency</span></a>
+        <a class="navbar-brand text-brand" href="{{route('index')}}"><span class="color-b">R</span>eal<span class="color-b">E</span>state<span class="color-b">Agency</span></a>
 
         <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
             <ul class="navbar-nav">
@@ -169,6 +169,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="{{route('contact')}}">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('login')}}" class="btn btn-outline-success">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{url('register')}}" class="btn btn-outline-success">Register</a>
                 </li>
             </ul>
         </div>

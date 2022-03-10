@@ -80,7 +80,7 @@ Route::group(['prefix' => 'merchant', 'namespace' => 'merchant', 'middleware' =>
     //Property
     Route::resource('properties', 'PropertyController');
     //Consults
-//    Route::resource('consults2', 'ConsultController');
+    Route::resource('consults2', 'ConsultController');
 
 });
 //login

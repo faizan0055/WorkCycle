@@ -41,15 +41,15 @@ class ConsultController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required',
-            'description'=>'nullable',
+            'question'=>'required',
+            'reply'=>'nullable',
 
         ]);
         $request['user_id'] = auth()->user()->id;
         $consult = Consult::create($request->all());
 
         $consult->save();
-        Session::flash('success','Updated Successfully!!');
+        Session::flash('success','Question Send Successfully!!');
         return redirect()->back();
     }
 
@@ -86,15 +86,15 @@ class ConsultController extends Controller
     public function update(Request $request, $consult)
     {
         $request->validate([
-            'name'=>'required',
-            'description'=>'nullable',
+            'question'=>'required',
+            'reply'=>'nullable',
 
         ]);
         $consult=Consult::findOrFail($consult);
         $consult->update($request->all());
 
         $consult->save();
-        Session::flash('success','Updated Successfully!!');
+        Session::flash('success','Question Updated Successfully!!');
         return redirect()->route('consults.index');
     }
 

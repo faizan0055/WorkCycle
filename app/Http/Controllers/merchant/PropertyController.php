@@ -48,6 +48,9 @@ class PropertyController extends Controller
             'category_id'=>'required',
             'price'=>'required',
             'type'=>'required',
+            'size'=>'required',
+            'bed'=>'required',
+            'washroom'=>'required',
 
            // 'user_id'=>'required',
         ]);
@@ -110,6 +113,9 @@ class PropertyController extends Controller
             'category_id'=>'required',
             'price'=>'required',
             'type'=>'required',
+            'size'=>'required',
+            'bed'=>'required',
+            'washroom'=>'required',
         ]);
 
         $image_small='images/properties/'.$property->image;

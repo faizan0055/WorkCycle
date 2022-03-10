@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Property extends Model
 {
     protected $table='properties';
-    protected $fillable=['name','user_id','category_id','description','image','price','type'];
-    public function properties()
+    protected $fillable=['name','user_id','category_id','description','image','price','type','size','bed','washroom'];
+    public function category()
     {
         return $this->belongsTo(Category::class,'category_id');
     }

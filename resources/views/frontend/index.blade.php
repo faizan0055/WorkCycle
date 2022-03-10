@@ -6,8 +6,9 @@
 
     <div class="swiper-wrapper">
 
-      <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url(frontend/assets/img/slide-1.jpg)">
-        <div class="overlay overlay-a"></div>
+      <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url({{('frontend/assets/img/slide-1.jpg')}})">
+{{--          "background:url({{asset('public/images/gavel-g570580300_1280.jpg')}})"--}}
+          <div class="overlay overlay-a"></div>
         <div class="intro-content display-table">
           <div class="table-cell">
             <div class="container">

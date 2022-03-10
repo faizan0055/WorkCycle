@@ -41,8 +41,8 @@ class ConsultController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'nullable',
-            'description'=>'nullable',
+            'question'=>'nullable',
+            'reply'=>'nullable',
 
         ]);
         $consult = Consult::create($request->all());
@@ -87,15 +87,15 @@ class ConsultController extends Controller
     public function update(Request $request, $consult)
     {
         $request->validate([
-            'name'=>'nullable',
-            'description'=>'required',
+            'question'=>'nullable',
+            'reply'=>'required',
 
         ]);
         $consult=Consult::findOrFail($consult);
         $consult->update($request->all());
 
         $consult->save();
-        Session::flash('success','Updated Successfully!!');
+        Session::flash('success','Reply Successfully!!');
         return redirect()->route('consults1.index');
     }
 
@@ -105,8 +105,9 @@ class ConsultController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Consult $consult)
+    public function destroy($consult)
     {
+        $consult=Consult::findOrFail($consult);
         $consult->delete();
         Session::flash('success','Deleted Successfully!!');
         return redirect()->back();

@@ -41,15 +41,16 @@ class ConsultController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required',
-            'description'=>'nullable',
+            'question'=>'required',
+            'reply'=>'nullable',
 
         ]);
         $request['user_id'] = auth()->user()->id;
+        //dd($request->all());
         $consult = Consult::create($request->all());
 
         $consult->save();
-        Session::flash('success','Updated Successfully!!');
+        Session::flash('success','Question Send Successfully!!');
         return redirect()->back();
     }
 
@@ -70,9 +71,11 @@ class ConsultController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Consult $consult)
+    public function edit($consult)
     {
         $consults=Consult::where('user_id', auth()->user()->id)->get();
+        //$consults=Consult::all();
+        $consult=Consult::findOrFail($consult);
         return view('merchant.consults2.index',compact('consults','consult'));
     }
 
@@ -86,15 +89,15 @@ class ConsultController extends Controller
     public function update(Request $request, $consult)
     {
         $request->validate([
-            'name'=>'required',
-            'description'=>'nullable',
+            'question'=>'required',
+            'reply'=>'nullable',
 
         ]);
         $consult=Consult::findOrFail($consult);
         $consult->update($request->all());
 
         $consult->save();
-        Session::flash('success','Updated Successfully!!');
+        Session::flash('success','Question Updated Successfully!!');
         return redirect()->route('consults2.index');
     }
 
@@ -104,9 +107,10 @@ class ConsultController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Consult $consult)
+    public function destroy(Consult $consults2)
     {
-        $consult->delete();
+//        $consults2=Consult::findOrFail($consults2);
+        $consults2->delete();
         Session::flash('success','Deleted Successfully!!');
         return redirect()->back();
     }

@@ -47,9 +47,13 @@ class PropertyController extends Controller
             'category_id'=>'required',
             'price'=>'required',
             'type'=>'required',
+            'size'=>'required',
+            'bed'=>'required',
+            'washroom'=>'required',
 
         ]);
         //dd($request->all());
+        $request['user_id'] = auth()->user()->id;
         $business_type = Property::create($request->all());
         if($request->file('image')){
             $image=$request->file('image');
@@ -98,7 +102,7 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Property $propertys)
+    public function update(Request $request, $propertys)
     {
         $request->validate([
             'name'=>'required',
@@ -107,10 +111,25 @@ class PropertyController extends Controller
             'category_id'=>'required',
             'price'=>'required',
             'type'=>'required',
+            'size'=>'required',
+            'bed'=>'required',
+            'washroom'=>'required',
+
         ]);
 
+        //dd($request->all());
+        $propertys=Property::findOrFail($propertys);
+        //dd($propertys);
         $image_small='images/properties/'.$propertys->image;
-        $propertys->update($request->all());
+        $propertys->name=$request->name;
+        $propertys->description=$request->description;
+        $propertys->category_id=$request->category_id;
+        $propertys->price=$request->price;
+        $propertys->type=$request->type;
+        $propertys->size=$request->size;
+        $propertys->bed=$request->bed;
+        $propertys->washroom=$request->washroom;
+        $propertys->save();
         if($request->file('image')){
             $image=$request->file('image');
             if($image->isValid()){
@@ -135,12 +154,14 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Property $propertys)
+    public function destroy($propertys)
     {
+        $propertys=Property::findOrFail($propertys);
         $image=url('images/properties/',$propertys->image);
         if(file_exists($image)){
             unlink($image);
         }
+
         $propertys->delete();
         Session::flash('success','Deleted Successfully!!');
         return redirect()->back();

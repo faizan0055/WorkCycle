@@ -136,6 +136,7 @@ class UserController extends Controller
         if ($validator->fails()) {
             $error_messages = implode(',', $validator->messages()->all());
             $response_array = array('status' => false, 'error_code' => 101, 'message' => $error_messages);
+
         }
         else {
             $user = User::where(function ($query) use ($request) {

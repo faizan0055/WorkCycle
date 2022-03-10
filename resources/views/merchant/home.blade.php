@@ -23,17 +23,17 @@
                     <div class="card overflow-hidden sales-card bg-primary-gradient">
                         <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                             <div class="">
-                                <h6 class="mb-3 tx-12 text-white">TOTAL CLIENTS</h6>
+                                <h6 class="mb-3 tx-12 text-white">-----</h6>
                             </div>
                             <div class="pb-0 mt-0">
                                 <div class="d-flex">
                                     <div class="">
-                                        <h4 class="tx-20 font-weight-bold mb-1 text-white">{{\App\User::where('type','user')->count()}}</h4>
+                                        <h4 class="tx-20 font-weight-bold mb-1 text-white">0</h4>
                                         <p class="mb-0 tx-12 text-white op-7"></p>
                                     </div>
                                     <span class="float-right my-auto ml-auto">
                                     <i class="fas fa-arrow-circle-right text-white"></i>
-                                    <span class="text-white op-7"><a href="{{route('users.index')}}" class="text-white">More Info</a></span>
+                                    <span class="text-white op-7"><a href="#" class="text-white">More Info</a></span>
                                 </span>
                                 </div>
                             </div>
@@ -45,12 +45,12 @@
                     <div class="card overflow-hidden sales-card bg-danger-gradient">
                         <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                             <div class="">
-                                <h6 class="mb-3 tx-12 text-white">TOTAL ORDERS</h6>
+                                <h6 class="mb-3 tx-12 text-white">-----</h6>
                             </div>
                             <div class="pb-0 mt-0">
                                 <div class="d-flex">
                                     <div class="">
-                                        <h4 class="tx-20 font-weight-bold mb-1 text-white">1</h4>
+                                        <h4 class="tx-20 font-weight-bold mb-1 text-white">0</h4>
                                         <p class="mb-0 tx-12 text-white op-7"></p>
                                     </div>
                                     <span class="float-right my-auto ml-auto">
@@ -66,12 +66,12 @@
                     <div class="card overflow-hidden sales-card bg-success-gradient">
                         <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                             <div class="">
-                                <h6 class="mb-3 tx-12 text-white">TOTAL QUESTIONS</h6>
+                                <h6 class="mb-3 tx-12 text-white">------</h6>
                             </div>
                             <div class="pb-0 mt-0">
                                 <div class="d-flex">
                                     <div class="">
-                                        <h4 class="tx-20 font-weight-bold mb-1 text-white">1</h4>
+                                        <h4 class="tx-20 font-weight-bold mb-1 text-white">0</h4>
                                         <p class="mb-0 tx-12 text-white op-7"></p>
                                     </div>
                                     <span class="float-right my-auto ml-auto">
@@ -87,12 +87,12 @@
                     <div class="card overflow-hidden sales-card bg-warning-gradient">
                         <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                             <div class="">
-                                <h6 class="mb-3 tx-12 text-white">TOTAL CHAPTERS</h6>
+                                <h6 class="mb-3 tx-12 text-white">------</h6>
                             </div>
                             <div class="pb-0 mt-0">
                                 <div class="d-flex">
                                     <div class="">
-                                        <h4 class="tx-20 font-weight-bold mb-1 text-white">4</h4>
+                                        <h4 class="tx-20 font-weight-bold mb-1 text-white">0</h4>
                                         <p class="mb-0 tx-12 text-white op-7"></p>
                                     </div>
                                     <span class="float-right my-auto ml-auto">

@@ -28,7 +28,7 @@
                             <div class="pb-0 mt-0">
                                 <div class="d-flex">
                                     <div class="">
-                                        <h4 class="tx-20 font-weight-bold mb-1 text-white">{{\App\User::all()->count()}}</h4>
+                                        <h4 class="tx-20 font-weight-bold mb-1 text-white">{{\App\User::where('type', '!=' ,'admin')->count()}}</h4>
                                         <p class="mb-0 tx-12 text-white op-7"></p>
                                     </div>
                                     <span class="float-right my-auto ml-auto">

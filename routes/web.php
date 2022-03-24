@@ -35,10 +35,17 @@ Route::get('/admin', 'HomeController@dashboard')->name('dashboard');
 Route::post('login', 'LoginController@login');
 Route::post('admin_login', 'LoginController@adminLogin')->name('client.login');
 Route::get('logout', 'LoginController@logout')->name('logout');
+//forget password
 Route::get('forget_password', 'ForgetPassController@index')->name('forget.pass');
+Route::post('forget-password', 'ForgetPassController@submitForgetPasswordForm')->name('forget.password.post');
+Route::get('reset-password/{token}', 'ForgetPassController@showResetPasswordForm')->name('reset.password.get');
+Route::post('reset-password','ForgetPassController@submitResetPasswordForm' )->name('reset.password.post');
+
+//profile
 Route::get('/Show_Profile', 'UserController@profile1')->name('show.profile');
 Route::post('/Update_Profile', 'UserController@profile_update')->name('profile_update');
 Route::get('/Edit_Profile', 'UserController@edit')->name('edit.profile');
+//update Password
 Route::get('/password', 'UserController@changepass')->name('change.pass');
 //Route::get('/check-pwd','AdminController@chkPassword');
 Route::post('/update-password','UserController@updatePwd')->name('update.password');

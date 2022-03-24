@@ -10,7 +10,7 @@
     <meta name="Keywords" content="Boat Brain,"/>
 
     <!-- Favicon -->
-    <link rel="icon" href="{{asset('images/logo.png')}}" type="image/x-icon"/>
+    <link rel="icon" href="{{ asset(env('ASSET_URL') .'images/logo1.png')}}" type="image/x-icon"/>
 
     <!-- Icons css -->
     <link href="{{asset('assets/css/icons.css')}}" rel="stylesheet">
@@ -71,7 +71,7 @@
                                         <div class="main-signup-header">
                                             <h2>ForgetPassword!</h2>
                                             <h5 class="font-weight-semibold mb-4">Please Enter Your Email.</h5>
-                                            <form action="{{route('forget.pass')}}" method="post">
+                                            <form action="{{route('forget.password.post')}}" method="post">
                                                 @csrf
                                                 @if(session()->has('alert'))
                                                     <div class="alert alert-{{ session()->get('alert.type') }}">
@@ -95,7 +95,7 @@
                                             </form>
                                         </div>
                                         <div class="main-signup-footer mg-t-20">
-                                            <p>Forget it, <a href="#"> Send me back</a> to the sign in screen.</p>
+                                            <p>Forget it, <a href="{{url('/login')}}"> Send me back</a> to the sign in screen.</p>
                                         </div>
                                     </div>
                                 </div>

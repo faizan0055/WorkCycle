@@ -143,11 +143,11 @@
             <ul class="navbar-nav">
 
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{route('index')}}">Home</a>
+                    <a class="nav-link" href="{{route('index')}}">Home</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link " href="{{route('about.page')}}">About</a>
+                    <a class="nav-link " {{ Route::is('about.page') ? 'active' : '' }} href="{{route('about.page')}}">About</a>
                 </li>
 
                 <li class="nav-item">

@@ -141,23 +141,18 @@
 
         <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
             <ul class="navbar-nav">
-
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('index')}}">Home</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link " {{ Route::is('about.page') ? 'active' : '' }} href="{{route('about.page')}}">About</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link " href="{{route('property.grid')}}">Property</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link " href="{{route('blog.grid')}}">Blog</a>
                 </li>
-
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
                     <div class="dropdown-menu">
@@ -170,19 +165,19 @@
                 <li class="nav-item">
                     <a class="nav-link " href="{{route('contact')}}">Contact</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{route('login')}}" class="btn btn-outline-success">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{url('register')}}" class="btn btn-outline-success">Register</a>
-                </li>
+
+                @auth
+{{--                    <a href="{{ url('/admin') }}">Dashboard</a>--}}
+                    <li class="nav-item mt-2"><a href="{{ url('/admin') }}">Dashboard</a></li>
+                @else
+                    <li class="nav-item mt-2"><a href="{{route('login')}}">Login /</a> <a href="{{url('register')}}">Register</a></li>
+                @endauth
+            </ul>
             </ul>
         </div>
-
         <button type="button" class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
             <i class="bi bi-search"></i>
         </button>
-
     </div>
 </nav><!-- End Header/Navbar -->
 

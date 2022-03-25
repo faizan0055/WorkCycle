@@ -8,7 +8,7 @@
     <title> Forget | Real Estate </title>
     <meta name="Author" content="Boat Brain">
     <meta name="Keywords" content="Boat Brain,"/>
-
+    <link href="{{ asset(env('ASSET_URL') .'css/toastr.min.css')}}" rel="stylesheet" />
     <!-- Favicon -->
     <link rel="icon" href="{{ asset(env('ASSET_URL') .'images/logo1.png')}}" type="image/x-icon"/>
 
@@ -66,6 +66,10 @@
                         <div class="row">
                             <div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
                                 <div class="card-sigin">
+                                    @if(Session::has('success'))
+                                        <p class="alert alert-primary">{{ Session::get('success') }}</p>
+
+                                    @endif
                                     <div class="mb-5 d-flex"><h1 class="main-logo1 ml-1 mr-0 my-auto tx-28"><span>Forget</span> Password</h1></div>
                                     <div class="card-sigin">
                                         <div class="main-signup-header">
@@ -86,7 +90,7 @@
                                                         </span>
                                                     @endif
                                                 </div>
-                                                <button class="btn btn-main-primary btn-block">Forget Password</button>
+                                                <button class="btn btn-main-primary btn-block">Send A Reset Link</button>
 
                                                 <div class="row row-xs">
                                                     <div class="col-sm-12">
@@ -109,6 +113,13 @@
 
 </div>
 <!-- End Page -->
+<script src="{{ asset(env('ASSET_URL') .'assets/js/form-elements.js')}}"></script>
+<script src="{{ asset(env('ASSET_URL') .'js/toastr.min.js')}}"></script>
+<script type="text/javascript">
+    @if (Session::has('success'))
+    toastr.success("{{Session::get('success')}}");
+    @endif
+</script>
 
 <!-- JQuery min js -->
 <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>

@@ -233,7 +233,7 @@
 
 <!-- custom js -->
 <script src="{{ asset(env('ASSET_URL') .'assets/js/custom.js')}}"></script>
-<script src="{{ asset(env('ASSET_URL') .'assets/js/main.js')}}"></script>
+{{--<script src="{{ asset(env('ASSET_URL') .'assets/js/main.js')}}"></script>--}}
 
 </body>
 </html>

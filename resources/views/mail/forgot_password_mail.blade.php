@@ -25,7 +25,7 @@
                 <tr>
                     <td style="text-align:center;">
                         <a href="{{url('/')}}" title="logo" target="_blank">
-                            <img width="60" src="{{asset('images/logoforappstores.png')}}" title="logo" alt="logo">
+                            <img width="60" src="{{asset('images/logo1.png')}}" title="logo" alt="logo">
                         </a>
                     </td>
                 </tr>

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ForgotPasswordMail;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use DB;
 use Carbon\Carbon;
@@ -35,7 +36,9 @@ class ForgetPassController extends Controller
             $message->subject('Reset Password');
         });
 
-        return back()->with('message', 'We have e-mailed your password reset link!');
+//        return back()->with('message', 'We have e-mailed your password reset link!');
+        Session::flash('success','Send Reset Link Successfully!!');
+        return redirect()->back();
     }
     public function showResetPasswordForm($token) {
         return view('mail.forgot_password_email', ['token' => $token]);

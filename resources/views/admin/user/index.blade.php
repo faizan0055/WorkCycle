@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Capv Users')
+@section('title','RealEstate Users')
 @section('style')
         <!-- Internal Data table css -->
         <link href="{{ asset(env('ASSET_URL') .'assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />

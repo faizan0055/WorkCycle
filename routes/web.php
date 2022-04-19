@@ -67,8 +67,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['aut
      Route::resource('advertisements', 'AdvertisementController');
     //Consults
     Route::resource('consults1', 'ConsultController');
+    //Reports
+    Route::resource('reports', 'ReportController');
 });
-///For Restaurant
+///For Buyer
 Route::group(['prefix' => 'client', 'namespace' => 'client', 'middleware' => ['auth', 'client']], function () {
     //profile
     //Route::get('profile', 'UserController@profile')->name('client.profile');
@@ -77,8 +79,10 @@ Route::group(['prefix' => 'client', 'namespace' => 'client', 'middleware' => ['a
     Route::resource('property', 'PropertyController');
     //Consults
     Route::resource('consults', 'ConsultController');
+    //Reportss
+    Route::resource('c-reports', 'ReportController');
 });
-
+// For Seller
 Route::group(['prefix' => 'merchant', 'namespace' => 'merchant', 'middleware' => ['auth', 'merchant']], function () {
     //Dashboard
     Route::resource('/', 'DashboardController');
@@ -88,6 +92,8 @@ Route::group(['prefix' => 'merchant', 'namespace' => 'merchant', 'middleware' =>
     Route::resource('properties', 'PropertyController');
     //Consults
     Route::resource('consults2', 'ConsultController');
+    //Reportss
+    Route::resource('seller-reports', 'ReportController');
 
 });
 //login

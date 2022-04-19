@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\client;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Property;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
+use App\Report;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
-use Image;
-
-class PropertyController extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +16,8 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $props=Property::all();
-        return view('client.property.index',compact('props'));
+        $reports=Report::all();
+        return view('admin.reports.index',compact('reports'));
     }
 
     /**
@@ -41,7 +38,14 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'=>'required',
+            'detail'=>'required',
+        ]);
+        $report = Report::create($request->all());
+        $report->save();
+        Session::flash('success','Updated Successfully!!');
+        return redirect()->back();
     }
 
     /**
@@ -50,10 +54,9 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Property $property)
+    public function show($id)
     {
-        //dd($property);
-        return view('client.property.show',compact('property'));
+        //
     }
 
     /**
@@ -62,9 +65,10 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Report $report)
     {
-        //
+        $reports=Report::all();
+        return view('admin.reports.index',compact('reports','report'));
     }
 
     /**
@@ -74,9 +78,17 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $report)
     {
-        //
+        $request->validate([
+            'title'=>'required',
+            'detail'=>'required',
+
+        ]);
+        $report=Report::findOrFail($report);
+        $report->update($request->all());
+        Session::flash('success','Updated Successfully!!');
+        return redirect()->route('reports.index');
     }
 
     /**
@@ -85,8 +97,10 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Report $report)
     {
-        //
+        $report->delete();
+        Session::flash('success','Deleted Successfully!!');
+        return redirect()->back();
     }
 }

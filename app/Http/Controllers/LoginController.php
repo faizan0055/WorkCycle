@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use App\Admin;
 use App\AssignUser;
 use App\Chapter;
+use App\Mail\LoginAlertMail;
 use App\RegisterLinks;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
@@ -51,6 +55,8 @@ class LoginController extends Controller
             'password' => 'required|string|max:191',
         ]);
         if($user = User::where('email',$request->email)->where('type','client')->where('blocked','1')->first()){
+
+            //if user not
             if (!$user) {
                 $alert['type'] = 'danger';
                 $alert['heading'] = 'login failed';
@@ -63,8 +69,11 @@ class LoginController extends Controller
                 $alert['message'] = 'Invalid  password';
                 return redirect()->back()->with('alert', $alert);
             }
+            //Send mail when user Login
+            Mail::to($user->email)->send(new LoginAlertMail($user));
             if (auth()->check() and auth()->user()->type === 'client')
                 return redirect('/client');
+
         }
         if($user = User::where('email',$request->email)->where('type','merchant')->where('blocked','1')->first()){
             if (!$user) {
@@ -79,6 +88,8 @@ class LoginController extends Controller
                 $alert['message'] = 'Invalid  password';
                 return redirect()->back()->with('alert', $alert);
             }
+            //Send mail when user Login
+            Mail::to($user->email)->send(new LoginAlertMail($user));
             if (auth()->check() and auth()->user()->type === 'merchant')
                 return redirect('/merchant');
         }

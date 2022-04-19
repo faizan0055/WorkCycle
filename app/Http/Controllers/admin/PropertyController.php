@@ -114,9 +114,7 @@ class PropertyController extends Controller
             'size'=>'required',
             'bed'=>'required',
             'washroom'=>'required',
-
         ]);
-
         //dd($request->all());
         $propertys=Property::findOrFail($propertys);
         //dd($propertys);

@@ -1,16 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\client;
+namespace App\Http\Controllers\merchant;
 
 use App\Http\Controllers\Controller;
-use App\Property;
+use App\Report;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Str;
-use Image;
 
-class PropertyController extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +15,8 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $props=Property::all();
-        return view('client.property.index',compact('props'));
+        $reports=Report::all();
+        return view('merchant.seller-reports.index',compact('reports'));
     }
 
     /**
@@ -50,10 +46,11 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Property $property)
+    public function show(Report $reports,$id)
     {
-        //dd($property);
-        return view('client.property.show',compact('property'));
+        $report = Report::findOrFail($id);
+       // dd($report);
+        return view('merchant.seller-reports.show',compact('reports','report'));
     }
 
     /**

@@ -53,7 +53,7 @@ class AdvertisementController extends Controller
                 $fileName=Str::slug($request->advertisement, '-').time().'.'.$image->getClientOriginalExtension();
                 $large_image_path='images/advertisement/'.$fileName;
                 //Resize Image
-                Image::make($image)->resize(300,250)->save($large_image_path);
+                Image::make($image)->save($large_image_path);
                 $advertisement->image = $fileName;
                 $advertisement->save();
             }
@@ -109,7 +109,7 @@ class AdvertisementController extends Controller
                 $fileName=Str::slug($request->advertisement, '-').time().'.'.$image->getClientOriginalExtension();
                 $large_image_path='images/advertisement/'.$fileName;
                 //Resize Image
-                Image::make($image)->resize(300,250)->save($large_image_path);
+                Image::make($image)->save($large_image_path);
                 if(file_exists($image_small)){
                     unlink($image_small);
                 }

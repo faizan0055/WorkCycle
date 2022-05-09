@@ -142,16 +142,16 @@
         <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('index')}}">Home</a>
+                    <a class="nav-link {{ Route::is('index') ? 'active' : '' }}" href="{{route('index')}}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " {{ Route::is('about.page') ? 'active' : '' }} href="{{route('about.page')}}">About</a>
+                    <a class="nav-link {{ Route::is('about.page') ? 'active' : '' }} "  href="{{route('about.page')}}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{{route('property.grid')}}">Property</a>
+                    <a class="nav-link {{ Route::is('property.grid') ? 'active' : '' }}" href="{{route('property.grid')}}">Property</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{{route('blog.grid')}}">Blog</a>
+                    <a class="nav-link {{ Route::is('blog.grid') ? 'active' : '' }}" href="{{route('blog.grid')}}">Blog</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
@@ -163,7 +163,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{{route('contact')}}">Contact</a>
+                    <a class="nav-link {{ Route::is('contact') ? 'active' : '' }}" href="{{route('contact')}}">Contact</a>
                 </li>
 
                 @auth

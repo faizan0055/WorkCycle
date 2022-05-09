@@ -102,6 +102,9 @@
                     <li class="slide">
                         <a class="side-menu__item" href="{{route('reports.index')}}"><i class="fab fa-rocketchat  side-menu__icon"></i> <span class="side-menu__label pt-3">Reports</span></a>
                     </li>
+                    <li class="slide">
+                        <a class="side-menu__item" href="{{route('admin_bidd.index')}}"><i class="fab fa-rocketchat  side-menu__icon"></i> <span class="side-menu__label pt-3">Create Bidding</span></a>
+                    </li>
                 @endif
                 @if(auth()->check() and auth()->user()->type === 'client')
                 <li class="slide">
@@ -117,6 +120,9 @@
                         <li class="slide">
                             <a class="side-menu__item" href="{{route('c-reports.index')}}"><i class="fab fa-rocketchat side-menu__icon" ></i> <span class="side-menu__label pt-3">Reports</span></a>
                         </li>
+                        <li class="slide">
+                            <a class="side-menu__item" href="{{route('buyer_bidd.index')}}"><i class="fab fa-rocketchat  side-menu__icon"></i> <span class="side-menu__label pt-3">Bidding</span></a>
+                        </li>
                 @endif
                 @if(auth()->check() and auth()->user()->type === 'merchant')
                 <li class="slide">
@@ -130,6 +136,9 @@
                         </li>
                         <li class="slide">
                             <a class="side-menu__item" href="{{route('seller-reports.index')}}"><i class="fab fa-rocketchat side-menu__icon" ></i> <span class="side-menu__label pt-3">Reports</span></a>
+                        </li>
+                        <li class="slide">
+                            <a class="side-menu__item" href="{{route('seller_bidd.index')}}"><i class="fab fa-rocketchat  side-menu__icon"></i> <span class="side-menu__label pt-3">Create Bidding</span></a>
                         </li>
                 @endif
             </ul>

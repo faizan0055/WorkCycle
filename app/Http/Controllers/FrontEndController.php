@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Property;
 use Illuminate\Http\Request;
 
 class FrontEndController extends Controller
 {
     public function index(){
-        return view('frontend.index');
+        $latestproperty = Property::latest()->take(6)->get();
+       // dd($latestproperty);
+        return view('frontend.index',compact('latestproperty'));
     }
     public function about(){
         return view('frontend.about');

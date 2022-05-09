@@ -69,6 +69,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['aut
     Route::resource('consults1', 'ConsultController');
     //Reports
     Route::resource('reports', 'ReportController');
+    //Bidds
+    Route::resource('admin_bidd', 'BidController');
 });
 ///For Buyer
 Route::group(['prefix' => 'client', 'namespace' => 'client', 'middleware' => ['auth', 'client']], function () {
@@ -81,6 +83,8 @@ Route::group(['prefix' => 'client', 'namespace' => 'client', 'middleware' => ['a
     Route::resource('consults', 'ConsultController');
     //Reportss
     Route::resource('c-reports', 'ReportController');
+    //Bidds
+    Route::resource('buyer_bidd', 'BidController');
 });
 // For Seller
 Route::group(['prefix' => 'merchant', 'namespace' => 'merchant', 'middleware' => ['auth', 'merchant']], function () {
@@ -94,6 +98,8 @@ Route::group(['prefix' => 'merchant', 'namespace' => 'merchant', 'middleware' =>
     Route::resource('consults2', 'ConsultController');
     //Reportss
     Route::resource('seller-reports', 'ReportController');
+    //Bidds
+    Route::resource('seller_bidd', 'BidController');
 
 });
 //login

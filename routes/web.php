@@ -59,6 +59,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['aut
     //USERS
     Route::resource('users', 'UserController');
     Route::post('user/status', 'UserController@change_block_status')->name('user.status.update');
+    //Property Status
+    Route::any('admin_property/status/{id}', 'PropertyController@change_property_status_admin')->name('property.status.update.admin');
     //Category
     Route::resource('categories', 'CategoryController');
     //Property
@@ -90,6 +92,8 @@ Route::group(['prefix' => 'client', 'namespace' => 'client', 'middleware' => ['a
 Route::group(['prefix' => 'merchant', 'namespace' => 'merchant', 'middleware' => ['auth', 'merchant']], function () {
     //Dashboard
     Route::resource('/', 'DashboardController');
+    //Property Status
+    Route::any('property/status/{id}', 'PropertyController@change_property_status')->name('property.status.update');
     //Merchant Users
     //Route::resource('merchant-users', 'UserController');
     //Property

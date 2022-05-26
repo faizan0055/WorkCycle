@@ -167,8 +167,18 @@
                 </li>
 
                 @auth
+                         @if(auth()->user()->type === 'admin')
 {{--                    <a href="{{ url('/admin') }}">Dashboard</a>--}}
-                    <li class="nav-item mt-2"><a href="{{ url('/admin') }}">Dashboard</a></li>
+                            <li class="nav-item mt-2"><a href="{{ url('/admin') }}">Dashboard</a></li>
+                        @endif
+                        @if(auth()->user()->type === 'client')
+                            {{--                    <a href="{{ url('/admin') }}">Dashboard</a>--}}
+                            <li class="nav-item mt-2"><a href="{{ url('/client') }}">Dashboard</a></li>
+                        @endif
+                        @if(auth()->user()->type === 'merchant')
+                            {{--                    <a href="{{ url('/admin') }}">Dashboard</a>--}}
+                            <li class="nav-item mt-2"><a href="{{ url('/merchant') }}">Dashboard</a></li>
+                        @endif
                 @else
                     <li class="nav-item mt-2"><a href="{{route('login')}}">Login /</a> <a href="{{url('register')}}">Register</a></li>
                 @endauth

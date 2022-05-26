@@ -20,7 +20,8 @@ class BidController extends Controller
     public function index()
     {
         $props=Bidd::all();
-        return view('client.buyer_bidd.index',compact('props'));
+        $closed = Bidd::where('start_datetime' , '<=' , now())->get();
+        return view('client.buyer_bidd.index',compact('props','closed'));
     }
 
     /**
@@ -57,15 +58,16 @@ class BidController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function show($id)
     {
-        //$bidprice = BiddParticipate::where('bidproperty_id',$id)->latest('price')->first();
+        $st = Bidd::where('id',$id)->where('start_datetime' , '<=' , now())->where('end_datetime' , '>=' , now())->first();
+        $closed = Bidd::where('id',$id)->where('start_datetime' , '<=' , now())->first();
+        //dd($closed);
         $bidprice = BiddParticipate::where('bidproperty_id',$id)->orderBy('id', 'desc')->first();
-        //dd($bidprice);
         $bidd = Bidd::findOrFail($id);
-        return view('client.buyer_bidd.show',compact('bidd','bidprice'));
+        return view('client.buyer_bidd.show',compact('bidd','bidprice','st','closed'));
     }
 
     /**
@@ -101,4 +103,5 @@ class BidController extends Controller
     {
         //
     }
+
 }

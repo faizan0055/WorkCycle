@@ -10,6 +10,7 @@
         $dt = new DateTime();
 
     @endphp
+
     <div class="container-fluid">
         <!-- breadcrumb -->
         <div class="breadcrumb-header justify-content-between">
@@ -86,7 +87,7 @@
 {{--                                    <p class="testimonial-text" style="line-height: 10px"><span class="font-weight-bold">Phone: </span>{{$property->users->phone}}</p>--}}
 
 {{--                                </div>--}}
-{{--                                @if(($dt >= $bidd->start_datetime) AND ($dt <= $bidd->end_datetime) )--}}
+                                @if(($st) )
 
                                 <form class="form-horizontal needs-validation" method="post" action="{{route('buyer_bidd.store')}}" enctype="multipart/form-data">
                                     @csrf
@@ -110,18 +111,21 @@
                                     </div>
                                     </div>
                                 </form>
-{{--                                @else--}}
+                                    @elseif($closed)
+                                        <span class="badge badge-danger mt-5">closed</span>
+                                @else
 {{--                                    <h6 class="mt-5">Just Wait Comming Soon At</h6>--}}
-{{--                                    <span class="badge badge-danger mt-5">Just Wait Comming Soon At</span>--}}
-{{--                                    <table>--}}
-{{--                                        <tr>--}}
-{{--                                            <th>Start Date:</th>--}}
-{{--                                            <td>{{date('M j,Y | H:i:s' ,strtotime($bidd->start_datetime))}}</td>--}}
-{{--                                            <th>End Date:</th>--}}
-{{--                                            <td>{{date('M j,Y | H:i:s' ,strtotime($bidd->end_datetime))}}</td>--}}
-{{--                                        </tr>--}}
-{{--                                    </table>--}}
-{{--                                @endif--}}
+                                    <span class="badge badge-danger mt-5">Just Wait Comming Soon At</span>
+                                    <table>
+                                        <tr>
+                                            <th>Start Date:</th>
+                                            <td>{{date('M j,Y | H:i:s' ,strtotime($bidd->start_datetime))}}</td>
+                                            <th>End Date:</th>
+                                            <td>{{date('M j,Y | H:i:s' ,strtotime($bidd->end_datetime))}}</td>
+                                        </tr>
+                                    </table>
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -130,6 +134,10 @@
 
         </div>
     </div>
+
+
+
+
 @endsection
 @section('script')
 

@@ -125,8 +125,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        $countries=Country::get();
-        return view('admin.user.edit',compact('user','countries'));
+
+        return view('admin.user.edit',compact('user'));
     }
 
     /**
@@ -138,27 +138,20 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        //dd($request->all());
         $request->validate([
             'name'=>'required',
-            'country_id'=>'required',
-            'password'=>'nullable|min:6',
-            'date'=>'nullable',
-            'address'=>'nullable',
+//            'email'=>'required|unique:users,email',
+//            'phone'=>'required|string|max:11|unique:users',
             'image'=>'nullable|mimes:jpg,jpeg,png,svg',
         ]);
         //dd($request->all());
-        $request->request->remove('email');
-        $request->request->remove('phone');
+
         $user = User::find($id);
-        if($request->password && $request->password != ''){
-            $request['password'] = bcrypt($request->password);
-        }else{
-            $request->request->remove('password');
-        }
-        if ($request->category_id)
-            $user->categories()->sync($request->category_id);
-        $user->update($request->all());
+        $user->name = $request->name;
+        $user->phone = $request->phone;
+        $user->email = $request->email;
+        $user->update();
         $image_small=url('images/user_profile/',$user->image);
         if($request->file('image')){
             $image=$request->file('image');
@@ -166,7 +159,7 @@ class UserController extends Controller
                 $fileName=time().'-'.Str::slug($request->name, '-').'.'.$image->getClientOriginalExtension();
                 $large_image_path='images/user_profile/'.$fileName;
                 //Resize Image
-                Image::make($image)->resize(128,128)->save($large_image_path);
+                Image::make($image)->save($large_image_path);
                 if(file_exists($image_small)){
                     unlink($image_small);
                 }
@@ -174,7 +167,7 @@ class UserController extends Controller
                 $user->save();
             }
         }
-        dd($user);
+        //dd($user);
         $user->save();
         return redirect()->route('users.index');
     }

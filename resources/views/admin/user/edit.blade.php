@@ -29,7 +29,7 @@
             <div class="d-flex my-xl-auto right-content">
                 <div class="mb-3 mb-xl-0">
                     <div class="btn-group dropdown">
-                        <a  href="{{route('users.index')}}" class="btn btn-danger"><i class="fa fa-eye"></i> View User</a>
+                        <a  href="{{route('users.index')}}" class="btn btn-primary"><i class="fa fa-eye"></i> View User</a>
                     </div>
                 </div>
             </div>
@@ -59,32 +59,7 @@
                                         @endif
                                     </div>
                                 </div>
-{{--                                <div class="col-lg-6">--}}
-{{--                                                <div class="form-group mb-3">--}}
-{{--                                                    <label>Country*</label>--}}
-{{--                                                    <select class="form-control select2" name="country_id">--}}
-{{--                                                        @foreach($countries as $cate)--}}
-{{--                                                            <option value="{{$cate->id}}" @if($user->country_id==$cate->id) selected @else @endif>{{$cate->name}}</option>--}}
-{{--                                                        @endforeach--}}
-{{--                                                    </select>--}}
-{{--                                                    @if($errors->has('username'))--}}
-{{--                                                        <span class="invalid-feedback" role="alert">--}}
-{{--                                                <strong>{{ $errors->first('username') }}</strong>--}}
-{{--                                            </span>--}}
-{{--                                                    @endif--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                <div class="col-lg-6">--}}
-{{--                                    <div class="form-group mb-3">--}}
-{{--                                        <label>Password*</label>--}}
-{{--                                        <input type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" name="password" value="{{ old('password') }}" placeholder="Password" >--}}
-{{--                                        @if($errors->has('password'))--}}
-{{--                                            <span class="invalid-feedback" role="alert">--}}
-{{--                                                <strong>{{ $errors->first('password') }}</strong>--}}
-{{--                                            </span>--}}
-{{--                                        @endif--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+
                                 <div class="col-lg-6">
                                     <div class="form-group mb-3">
                                         <label>Email*</label>
@@ -127,7 +102,7 @@
                             </div>
                             <div class="form-group mb-0 mt-3 justify-content-end">
                                 <div>
-                                    <button type="submit" class="btn btn-danger-gradient btn-block">Update Now</button>
+                                    <button type="submit" class="btn btn-primary-gradient btn-block">Update Now</button>
                                 </div>
                             </div>
                         </form>

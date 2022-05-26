@@ -63,7 +63,7 @@ class PropertyController extends Controller
                 $fileName=time().'-'.Str::slug($request->name, '-').'.'.$image->getClientOriginalExtension();
                 $large_image_path='images/properties/'.$fileName;
                 //Resize Image
-                Image::make($image)->resize(250,250)->save($large_image_path);
+                Image::make($image)->save($large_image_path);
                 $business_type->image = $fileName;
                 $business_type->save();
             }
@@ -126,7 +126,7 @@ class PropertyController extends Controller
                 $fileName=time().'-'.Str::slug($request->name, '-').'.'.$image->getClientOriginalExtension();
                 $large_image_path='images/properties/'.$fileName;
                 //Resize Image
-                Image::make($image)->resize(250,250)->save($large_image_path);
+                Image::make($image)->save($large_image_path);
                 if(file_exists($image_small)){
                     unlink($image_small);
                 }
@@ -152,6 +152,17 @@ class PropertyController extends Controller
         }
         $property->delete();
         Session::flash('success','Deleted Successfully!!');
+        return redirect()->back();
+    }
+    public function change_property_status(Request $request){
+        $user=Property::findOrFail($request->id);
+        //dd($user);
+        if ($user->status)
+            $user->status = false;
+        else
+            $user->status = true;
+
+        $user->save();
         return redirect()->back();
     }
 }

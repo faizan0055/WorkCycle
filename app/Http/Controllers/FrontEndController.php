@@ -2,24 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Advertisement;
 use App\Property;
+use App\User;
 use Illuminate\Http\Request;
 
 class FrontEndController extends Controller
 {
     public function index(){
-        $latestproperty = Property::latest()->take(6)->get();
-       // dd($latestproperty);
-        return view('frontend.index',compact('latestproperty'));
+        $latestproperty = Property::where('status','=','0')->latest()->take(6)->get();
+        $agents = User::where('type','merchant')->latest()->take(6)->get();
+        $blogs = Advertisement::latest()->take(2)->get();
+       // dd($agents);
+        return view('frontend.index',compact('latestproperty','agents','blogs'));
     }
     public function about(){
         return view('frontend.about');
     }
     public function propertyGrid(){
-        return view('frontend.property-grid');
+        $properties = Property::all();
+        return view('frontend.property-grid',compact('properties'));
     }
     public function blogGrid(){
-        return view('frontend.blog-grid');
+        $blogs = Advertisement::all();
+        return view('frontend.blog-grid',compact('blogs'));
     }
     public function ProperSingle(){
         return view('frontend.property-single');
@@ -28,7 +34,8 @@ class FrontEndController extends Controller
         return view('frontend.blog-single');
     }
     public function agentGrid(){
-        return view('frontend.agents-grid');
+        $agents = User::where('type','merchant')->get();
+        return view('frontend.agents-grid',compact('agents'));
     }
     public function agentSigle(){
         return view('frontend.agent-single');

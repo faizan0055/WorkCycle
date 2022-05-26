@@ -73,7 +73,14 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <p class="mg-b-10">Type</p>
-                                        <input type="text" class="form-control {{ $errors->has('type') ? ' is-invalid' : '' }}" name="type" value="{{ isset($property) ? $property->type : '' }}"  placeholder="Sell Or Rent">
+{{--                                        <input type="text" class="form-control {{ $errors->has('type') ? ' is-invalid' : '' }}" name="type" value="{{ isset($property) ? $property->type : '' }}"  placeholder="Sell Or Rent">--}}
+                                        <select class="form-control select3 {{ $errors->has('type') ? ' is-invalid' : '' }}" name="type" >
+
+                                            <option label="Choose one" ></option>
+                                            <option value="Rent" >Rent</option>
+                                            <option value="Sell" >Sell</option>
+                                            <option value="Lease" >Lease</option>
+                                        </select>
                                         @if($errors->has('type'))
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('type') }}</strong>
@@ -193,7 +200,8 @@
                                             <td>{{$pro->bed}}</td>
                                             <td>{{$pro->washroom}}</td>
                                             <td>{{$pro->description}}</td>
-                                            <td><a class="btn btn-sm btn-info" href="{{route('properties.edit',$pro->id)}}"><i class="fa fa-edit"></i></a>
+                                            <td><a href="{{route('property.status.update',$pro->id)}}" onclick="return myFunctionStatus();">@if($pro->status==0)<span class="badge badge-danger">pending</span>@else <span class="badge badge-success">success</span> @endif</a>
+                                                <a class="btn btn-sm btn-info" href="{{route('properties.edit',$pro->id)}}"><i class="fa fa-edit"></i></a>
                                                 <a class="btn btn-sm btn-warning"  href="javascript:void(0);" onclick="$(this).find('form').submit();"><i class="fa fa-trash"></i>
                                                     <form action="{{ route('properties.destroy', $pro->id) }}"
                                                           method="post"
@@ -292,5 +300,12 @@
         $(document).ready( function () {
             $('.myTable').DataTable();
         } );
+    </script>
+    <script>
+
+        function myFunctionStatus() {
+            if(!confirm("Are You Sure you want to do this !"))
+                event.preventDefault();
+        }
     </script>
 @endsection

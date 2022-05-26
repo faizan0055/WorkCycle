@@ -70,7 +70,7 @@ class LoginController extends Controller
                 return redirect()->back()->with('alert', $alert);
             }
             //Send mail when user Login
-            Mail::to($user->email)->send(new LoginAlertMail($user));
+//            Mail::to($user->email)->send(new LoginAlertMail($user));
             if (auth()->check() and auth()->user()->type === 'client')
                 return redirect('/client');
 
@@ -89,7 +89,7 @@ class LoginController extends Controller
                 return redirect()->back()->with('alert', $alert);
             }
             //Send mail when user Login
-            Mail::to($user->email)->send(new LoginAlertMail($user));
+//            Mail::to($user->email)->send(new LoginAlertMail($user));
             if (auth()->check() and auth()->user()->type === 'merchant')
                 return redirect('/merchant');
         }

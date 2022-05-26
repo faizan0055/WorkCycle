@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use App\Mail\WellComeMail;
 use App\User;
+use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -49,7 +51,7 @@ class RegisterController extends Controller
             'image'=>'nullable',
 
         ]);
-
+        $pass = $request->password;
         $request['password'] = bcrypt($request->password);
         $user = User::create($request->all());
         $image = $request->image;
@@ -67,22 +69,8 @@ class RegisterController extends Controller
             $user->image = $filename;
             $user->save();
         }
-        // if($request->file('image')){
-        //     $image=$request->file('image');
-        //     if($image->isValid()){
-        //         $fileName=time().'-'.Str::slug($request->name, '-').'.'.$image->getClientOriginalExtension();
-        //         $large_image_path='public/images/user_profile/'.$fileName;
-        //         //Resize Image
-        //         Image::make($image)->resize(128,128)->save($large_image_path);
-        //         $user->image = $fileName;
-        //         $user->save();
-
-        //     }
-        // }
-        //Session::flash('success','Created Successfully!!');
+        Mail::to($user->email)->send(new WellComeMail($user,$pass));
         return view('auth.login');
-        // return redirect()->route('auth.login');
-
     }
 
     /**

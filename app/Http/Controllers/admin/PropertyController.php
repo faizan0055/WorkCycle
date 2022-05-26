@@ -164,4 +164,18 @@ class PropertyController extends Controller
         Session::flash('success','Deleted Successfully!!');
         return redirect()->back();
     }
+    public function change_property_status_admin(Request $request){
+        $user=Property::findOrFail($request->id);
+        //dd($user);
+        if ($user->status)
+            $user->status = false;
+        else
+            $user->status = true;
+
+        $user->save();
+        //Session::flash('success',' Successfully!!');
+        return redirect()->back();
+    }
+
+
 }

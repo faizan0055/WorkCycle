@@ -19,7 +19,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $props=Property::all();
+        $props=Property::where('status','=','0')->get();
         return view('client.property.index',compact('props'));
     }
 

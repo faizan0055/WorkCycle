@@ -77,9 +77,9 @@
                                         <select class="form-control select3 {{ $errors->has('type') ? ' is-invalid' : '' }}" name="type" >
 
                                             <option label="Choose one" ></option>
-                                            <option value="Rent" >Rent</option>
-                                            <option value="Sell" >Sell</option>
-                                            <option value="Lease" >Lease</option>
+                                            <option value="Rent" @if(isset($property) && $property->type == 'Rent'){{'selected'}}@endif>Rent</option>
+                                            <option value="Sell" @if(isset($property) && $property->type == 'Sell'){{'selected'}}@endif>Sell</option>
+                                            <option value="Lease" @if(isset($property) && $property->type == 'Lease'){{'selected'}}@endif>Lease</option>
                                         </select>
                                         @if($errors->has('type'))
                                             <span class="invalid-feedback" role="alert">

@@ -123,6 +123,6 @@ Route::get('/blog_single', 'FrontEndController@BlogSingle')->name('blog.single')
 Route::get('/agents_grid', 'FrontEndController@agentGrid')->name('agent.grid');
 Route::get('/agent_single', 'FrontEndController@agentSigle')->name('agent.single');
 Route::get('/contact', 'FrontEndController@contact')->name('contact');
-
+Route::get('/search_property', 'FrontEndController@SearchProperty')->name('search.property');
 
 

@@ -44,83 +44,54 @@
     </div>
     <span class="close-box-collapse right-boxed bi bi-x"></span>
     <div class="box-collapse-wrap form">
-        <form class="form-a">
+        <form class="form-a" action="{{route('search.property')}}" method="get">
             <div class="row">
                 <div class="col-md-12 mb-2">
                     <div class="form-group">
                         <label class="pb-2" for="Type">Keyword</label>
-                        <input type="text" class="form-control form-control-lg form-control-a" placeholder="Keyword">
+                        <input type="text" class="form-control form-control-lg form-control-a" placeholder="Keyword" name="name">
                     </div>
                 </div>
                 <div class="col-md-6 mb-2">
                     <div class="form-group mt-3">
                         <label class="pb-2" for="Type">Type</label>
-                        <select class="form-control form-select form-control-a" id="Type">
-                            <option>All Type</option>
-                            <option>For Rent</option>
-                            <option>For Sale</option>
-                            <option>Open House</option>
+                        <select class="form-control form-select form-control-a" id="Type" name="type">
+                            <option value="">All Type</option>
+                            <option value="Rent">For Rent</option>
+                            <option value="Sell">For Sale</option>
+                            <option value="Lease">For Lease</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-md-6 mb-2">
-                    <div class="form-group mt-3">
-                        <label class="pb-2" for="city">City</label>
-                        <select class="form-control form-select form-control-a" id="city">
-                            <option>All City</option>
-                            <option>Alabama</option>
-                            <option>Arizona</option>
-                            <option>California</option>
-                            <option>Colorado</option>
-                        </select>
-                    </div>
-                </div>
+
                 <div class="col-md-6 mb-2">
                     <div class="form-group mt-3">
                         <label class="pb-2" for="bedrooms">Bedrooms</label>
-                        <select class="form-control form-select form-control-a" id="bedrooms">
-                            <option>Any</option>
-                            <option>01</option>
-                            <option>02</option>
-                            <option>03</option>
+                        <select class="form-control form-select form-control-a" id="bedrooms" name="bed">
+                            <option value="">Any</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-md-6 mb-2">
-                    <div class="form-group mt-3">
-                        <label class="pb-2" for="garages">Garages</label>
-                        <select class="form-control form-select form-control-a" id="garages">
-                            <option>Any</option>
-                            <option>01</option>
-                            <option>02</option>
-                            <option>03</option>
-                            <option>04</option>
-                        </select>
-                    </div>
-                </div>
+
                 <div class="col-md-6 mb-2">
                     <div class="form-group mt-3">
                         <label class="pb-2" for="bathrooms">Bathrooms</label>
-                        <select class="form-control form-select form-control-a" id="bathrooms">
-                            <option>Any</option>
-                            <option>01</option>
-                            <option>02</option>
-                            <option>03</option>
+                        <select class="form-control form-select form-control-a" id="bathrooms" name="bath">
+                            <option value="">Any</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-md-6 mb-2">
-                    <div class="form-group mt-3">
-                        <label class="pb-2" for="price">Min Price</label>
-                        <select class="form-control form-select form-control-a" id="price">
-                            <option>Unlimite</option>
-                            <option>$50,000</option>
-                            <option>$100,000</option>
-                            <option>$150,000</option>
-                            <option>$200,000</option>
-                        </select>
-                    </div>
-                </div>
+
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-b">Search Property</button>
                 </div>
@@ -153,15 +124,18 @@
                 <li class="nav-item">
                     <a class="nav-link {{ Route::is('blog.grid') ? 'active' : '' }}" href="{{route('blog.grid')}}">Blog</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item " href="{{route('property.single')}}">Property Single</a>
-                        <a class="dropdown-item " href="{{route('blog.single')}}">Blog Single</a>
-                        <a class="dropdown-item " href="{{route('agent.grid')}}">Agents Grid</a>
-                        <a class="dropdown-item " href="{{route('agent.single')}}">Agent Single</a>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::is('agent.grid') ? 'active' : '' }}" href="{{route('agent.grid')}}">Agents</a>
                 </li>
+{{--                <li class="nav-item dropdown">--}}
+{{--                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>--}}
+{{--                    <div class="dropdown-menu">--}}
+{{--                        <a class="dropdown-item " href="{{route('property.single')}}">Property Single</a>--}}
+{{--                        <a class="dropdown-item " href="{{route('blog.single')}}">Blog Single</a>--}}
+{{--                        <a class="dropdown-item " href="{{route('agent.grid')}}">Agents Grid</a>--}}
+{{--                        <a class="dropdown-item " href="{{route('agent.single')}}">Agent Single</a>--}}
+{{--                    </div>--}}
+{{--                </li>--}}
                 <li class="nav-item">
                     <a class="nav-link {{ Route::is('contact') ? 'active' : '' }}" href="{{route('contact')}}">Contact</a>
                 </li>

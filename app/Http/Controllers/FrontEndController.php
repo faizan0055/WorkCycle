@@ -43,4 +43,28 @@ class FrontEndController extends Controller
     public function contact(){
         return view('frontend.contact');
     }
+    public function SearchProperty(Request $request){
+        //dd($request->bath);
+        if(!$request->name && !$request->type && !$request->bed && !$request->bath){
+            $proprtyname = 'Dhakafghj';
+            $proprtytype = 'Housedfgh';
+            $proprtybed = 'House1dfgh';
+            $proprtybath = 'House2dfgh';
+
+        }
+        else{
+            $proprtyname = $request->name;
+            $proprtytype = $request->type;
+            $proprtybed = $request->bed;
+            $proprtybath = $request->bath;
+
+        }
+        $search = Property::where('name', 'like', '%' . $proprtyname . '%')
+            ->Where('type', 'like', '%' . $proprtytype . '%')
+            ->Where('bed', 'like', '%' . $proprtybed . '%')
+            ->Where('washroom', 'like', '%' . $proprtybath . '%')
+            ->get();
+        //dd($search);
+        return view('frontend.search_property', compact('search'));
+    }
 }

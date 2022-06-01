@@ -38,6 +38,7 @@
                                     <h4> Property Information </h4>
                                     <p class="testimonial-text" ><span class="font-weight-bold">Name: </span>{{$property->name}}</p>
                                     <p class="testimonial-text"><span class="font-weight-bold">Category: </span>{{$property->category->name}}</p>
+                                    <p class="testimonial-text"><span class="font-weight-bold">Type: </span>{{$property->type}}</p>
                                     <p class="testimonial-text"><span class="font-weight-bold">Price: </span>{{$property->price}}</p>
                                      <p class="testimonial-text"><span class="font-weight-bold">Detail: </span>{{$property->description}}</p>
                                     <p class="testimonial-text"><span class="font-weight-bold">Size: </span>{{$property->size}}</p>

@@ -13,7 +13,7 @@ class WellComeMail extends Mailable
      *
      * @return void
      */
-    public function __construct($user,$pass)
+    public function __construct($user)
     {
         $this->data = $user;
 //        $this->passw = $pass;

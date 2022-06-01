@@ -27,37 +27,6 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-{{--                @foreach($props as $index => $prop)--}}
-{{--                <div class="col-md-3">--}}
-{{--                    <!-- Profile Image -->--}}
-
-{{--                    <div class="card card-primary card-outline">--}}
-
-{{--                        <div class="card-body box-profile">--}}
-
-{{--                            <div class="text-center" >--}}
-{{--                                <img class="profile-user-img img-fluid img-circle"--}}
-{{--                                     src="{{url('images/properties',$prop->image)}}"--}}
-{{--                                     alt="User profile picture">--}}
-{{--                            </div>--}}
-{{--                            <h5 class=" text-left"><b>Name: </b>{{$prop->name}}</h5>--}}
-{{--                            <h5 class="profile-username text-left"><b>Price: </b>{{$prop->price}}</h5>--}}
-{{--                            <h5 class="profile-username text-left"><b>Detail: </b>{{$prop->description}}</h5>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="card" >--}}
-{{--                        <img class="card-img-top" src="{{url('images/properties',$prop->image)}}"--}}{{----}}{{-- alt="Card image cap">--}}
-{{--                        <div class="card-body">--}}
-{{--                            <h5 class="card-title">Name: <span class="text-muted">{{$prop->name}}</span></h5>--}}
-{{--                            <h5 class="card-title">PRICE: <span class="text-muted">{{$prop->price}}</span></h5>--}}
-{{--                            <h5 class="card-title">Detail</h5>--}}
-{{--                            <h6 class="card-subtitle mb-2 text-muted">{{$prop->description}}</h6>--}}
-
-{{--                        </div>--}}
-{{--                    </div>--}}
-
-{{--                </div>--}}
-{{--                @endforeach--}}
                 <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
                     <div class="col-xl-12">
                         <div class="card">
@@ -76,6 +45,7 @@
                                             <th>IMAGE</th>
                                             <th>Property Name</th>
                                             <th>Property Category</th>
+                                            <th>Property type</th>
                                             <th>Property Detail</th>
                                             <th>PRICE</th>
                                             <th>SHOW</th>
@@ -88,6 +58,7 @@
                                                 <td><img src="{{url('images/properties',$prop->image)}}" width="50"></td>
                                                 <td>{{$prop->name}}</td>
                                                 <td>{{$prop->category->name}}</td>
+                                                <td>{{$prop->type}}</td>
                                                 <td>{{$prop->description}}</td>
                                                 <td>{{$prop->price}}</td>
                                                 <td><a class="btn btn-sm btn-success" href="{{ route('property.show', $prop->id) }}"><i class="fa fa-eye"></i></a>

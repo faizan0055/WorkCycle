@@ -51,7 +51,7 @@
 {{--                                    <p>Your Password is : {{$pass->password}}</p>--}}
 
     {{--                                     decrypted password--}}
-{{--                                    <p>Your Password is : {{decrypt($data->password)}}</p>--}}
+                                    <p>Your Password is : {{$data->password}}</p>
 
                                     <p>Thank you for joining us.</p>
 

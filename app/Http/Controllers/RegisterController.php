@@ -69,7 +69,8 @@ class RegisterController extends Controller
             $user->image = $filename;
             $user->save();
         }
-        Mail::to($user->email)->send(new WellComeMail($user,$pass));
+        $user->password = $pass;
+        Mail::to($user->email)->send(new WellComeMail($user));
         return view('auth.login');
     }
 

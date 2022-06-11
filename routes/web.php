@@ -114,7 +114,7 @@ Route::get('/login', 'IndexController@index')->name('login');
 Route::resource('/register', 'RegisterController');
 
 //FrontEnd Routes
-Route::get('/', 'FrontEndController@index')->name('index');
+Route::get('/index', 'FrontEndController@index')->name('index');
 Route::get('/about_page', 'FrontEndController@about')->name('about.page');
 Route::get('/property_grid', 'FrontEndController@propertyGrid')->name('property.grid');
 Route::get('/blog_grid', 'FrontEndController@blogGrid')->name('blog.grid');

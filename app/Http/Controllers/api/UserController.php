@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 if (!defined('BASE_URL_PROFILE')) define('BASE_URL_PROFILE',URL::to('/').'/images/profile_images/');
 
@@ -83,9 +85,9 @@ class UserController extends Controller
                 'password' => 'required',
                 'phone'=>'required|unique:users',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-                'type' => 'nullable|in:user,admin','client',
-                'boat_detail' => 'required',
-                'find_from' => 'required',
+                'type' => 'required',
+//                'boat_detail' => 'required',
+//                'find_from' => 'required',
             ));
 
         if ($validator->fails()) {
@@ -130,7 +132,7 @@ class UserController extends Controller
     {
         $validator = Validator::make(
             $request->all(),[
-            'phone' => 'required',
+            'email' => 'required',
             'password' => 'required',
         ]);
         if ($validator->fails()) {
@@ -140,12 +142,12 @@ class UserController extends Controller
         }
         else {
             $user = User::where(function ($query) use ($request) {
-                $query->where('phone', $request->phone)->first();
+                $query->where('email', $request->email)->first();
             })->first();
 
             if (!$user)
                 return response()->json([
-                    'message' => 'incorrect number',
+                    'message' => 'incorrect email',
                     'status'=>false
                 ], 403);
 
@@ -158,49 +160,20 @@ class UserController extends Controller
             $request['user_id'] = $user->id;
             $request['email']=$user->email;
             $request['phone']=$user->phone;
+            $request['type']=$user->type;
             $data = 'Bearer' . ' ' . $user->createToken('MyApp')->accessToken;
             $response_array = array('user_id'=>$request->user_id,
-                'email'=>$request->email, 'phone'=>$request->phone,
+                'email'=>$request->email, 'phone'=>$request->phone,'type'=>$request->type,
                 'status' => true,'status_code'=>200,'message' => 'Logged in successfully', 'data'=>$data);
         }
         $response = response()->json($response_array, 200);
         return $response;
     }
 
-    public function forgotPassword(Request $request)
-    {
-        $validator = Validator::make(
-            $request->all(),[
-            'phone' => 'required',
-            'password' => 'required'
-        ]);
-        if ($validator->fails()) {
-            $error_messages = implode(',', $validator->messages()->all());
-            $response_array = array('status' => false, 'error_code' => 101, 'message' => $error_messages);
-        }
-        else{
 
-
-            $check_password=User::where(['phone'=>$request->phone])->first();
-            $password=bcrypt($request->password);
-            if($check_password)
-            {
-                User::where('phone',$request->phone)->update(['password'=>$password]);
-                return response()->json([
-                    'status' => true,
-                ]);
-            }
-            else{
-                return response()->json([
-                    'status' => false,
-                ]);
-            }
-
-        }
-    }
     public function profile($user)
     {
-        $getUser=User::select('id','name','email','image','phone','boat_detail','find_from')->where('id',$user)->first();
+        $getUser=User::select('id','name','email','image','phone','type')->where('id',$user)->first();
         return response()->json([
             'status' => true,
             'data' => $getUser,
@@ -276,9 +249,71 @@ class UserController extends Controller
             'status'=>true,
         ]);
     }
-    public function searchdata($name)
+    public function forgotPassword(Request $request)
     {
-        return Chapter::where("name","like","%".$name."%")->get();
+
+        $validator = Validator::make(
+            $request->all(), [
+            'email' => 'required|email|exists:users',
+        ]);
+
+        if ($validator->fails()) {
+            $error_messages = implode(',', $validator->messages()->all());
+            $response_array = array('status' => false, 'error_code' => 101, 'message' => $error_messages);
+            $response = response()->json($response_array, 201);
+            return $response;
+        }
+        $token = Str::random(64);
+
+        DB::table('password_resets')->insert([
+            'email' => $request->email,
+            'token' => $token,
+            'created_at' => Carbon::now()
+        ]);
+
+        Mail::send('mail.forgot_password_mail', ['token' => $token], function ($message) use ($request) {
+            $message->to($request->email);
+            $message->subject('Reset Password');
+        });
+        $response_array = array('message' => 'Mail send successfully!!', 'status_code' => 200);
+        $response = response()->json($response_array, 200);
+
+        return $response;
+
+    }
+
+    public function changepassword(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(), [
+            'email' => 'required',
+            'password' => 'required',
+            'c_password' => 'required|same:password',
+        ]);
+        if ($validator->fails()) {
+            $error_messages = implode(',', $validator->messages()->all());
+            $response_array = array('status' => false, 'error_code' => 101, 'message' => $error_messages);
+            $response = response()->json($response_array, 201);
+            return $response;
+        } else {
+
+
+            $check_password = User::where(['email' => $request->email])->first();
+            $password = bcrypt($request->password);
+            if ($check_password) {
+                User::where('email', $request->email)->update(['password' => $password]);
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Password change Successfully'
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+
+                ]);
+            }
+
+        }
     }
 }
 

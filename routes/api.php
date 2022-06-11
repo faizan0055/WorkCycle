@@ -23,6 +23,6 @@ Route::group(['namespace'=>'api'],function() {
     Route::get('user_profile/{user}', 'UserController@profile');
     Route::post('update_profile/', 'UserController@updateProfile');
     Route::post('forgot_password', 'UserController@forgotPassword');
-    Route::get('search/{name}', 'UserController@searchdata');
+    Route::post('change_password', 'UserController@changepassword');
 
 });

@@ -59,51 +59,22 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['aut
     //USERS
     Route::resource('users', 'UserController');
     Route::post('user/status', 'UserController@change_block_status')->name('user.status.update');
-    //Property Status
-    Route::any('admin_property/status/{id}', 'PropertyController@change_property_status_admin')->name('property.status.update.admin');
+
     //Category
     Route::resource('categories', 'CategoryController');
-    //Property
-     Route::resource('propertiess', 'PropertyController');
-    // //Advertisements
-     Route::resource('advertisements', 'AdvertisementController');
-    //Consults
-    Route::resource('consults1', 'ConsultController');
-    //Reports
-    Route::resource('reports', 'ReportController');
-    //Bidds
-    Route::resource('admin_bidd', 'BidController');
+
 });
 ///For Buyer
 Route::group(['prefix' => 'client', 'namespace' => 'client', 'middleware' => ['auth', 'client']], function () {
     //profile
     //Route::get('profile', 'UserController@profile')->name('client.profile');
     Route::resource('/', 'DashboardController');
-    // property View
-    Route::resource('property', 'PropertyController');
-    //Consults
-    Route::resource('consults', 'ConsultController');
-    //Reportss
-    Route::resource('c-reports', 'ReportController');
-    //Bidds
-    Route::resource('buyer_bidd', 'BidController');
 });
 // For Seller
 Route::group(['prefix' => 'merchant', 'namespace' => 'merchant', 'middleware' => ['auth', 'merchant']], function () {
     //Dashboard
     Route::resource('/', 'DashboardController');
     //Property Status
-    Route::any('property/status/{id}', 'PropertyController@change_property_status')->name('property.status.update');
-    //Merchant Users
-    //Route::resource('merchant-users', 'UserController');
-    //Property
-    Route::resource('properties', 'PropertyController');
-    //Consults
-    Route::resource('consults2', 'ConsultController');
-    //Reportss
-    Route::resource('seller-reports', 'ReportController');
-    //Bidds
-    Route::resource('seller_bidd', 'BidController');
 
 });
 //login

@@ -90,56 +90,17 @@
                 <li class="slide">
                     <a class="side-menu__item" href="{{route('categories.index')}}"><i class="fas fa-cubes side-menu__icon"></i> <span class="side-menu__label pt-3">Cetegory</span></a>
                 </li>
-                    <li class="slide">
-                        <a class="side-menu__item" href="{{route('propertiess.index')}}"><i class="fas fa-building side-menu__icon"></i> <span class="side-menu__label pt-3">Property</span></a>
-                    </li>
-                    <li class="slide">
-                        <a class="side-menu__item" href="{{route('advertisements.index')}}"><i class="fas fa-ad side-menu__icon"></i> <span class="side-menu__label pt-3">Advertisements</span></a>
-                    </li>
-                    <li class="slide">
-                        <a class="side-menu__item" href="{{route('consults1.index')}}"><i class="fab fa-rocketchat  side-menu__icon"></i> <span class="side-menu__label pt-3">Consults</span></a>
-                    </li>
-                    <li class="slide">
-                        <a class="side-menu__item" href="{{route('reports.index')}}"><i class="fa fa-file  side-menu__icon"></i> <span class="side-menu__label pt-3">Reports</span></a>
-                    </li>
-                    <li class="slide">
-                        <a class="side-menu__item" href="{{route('admin_bidd.index')}}"><i class="fa fa-bullhorn  side-menu__icon"></i> <span class="side-menu__label pt-3">Create Bidding</span></a>
-                    </li>
                 @endif
                 @if(auth()->check() and auth()->user()->type === 'client')
                 <li class="slide">
                     <a class="side-menu__item" href="{{url('/client')}}"><i class="fas fa-tachometer-alt side-menu__icon"></i> <span class="side-menu__label pt-3">Dashboard</span></a>
                 </li>
 
-                <li class="slide">
-                    <a class="side-menu__item" href="{{route('property.index')}}"><i class="fas fa-building side-menu__icon"></i> <span class="side-menu__label pt-3">Show Property</span></a>
-                </li>
-                        <li class="slide">
-                            <a class="side-menu__item" href="{{route('consults.index')}}"><i class="fab fa-rocketchat side-menu__icon" ></i> <span class="side-menu__label pt-3">Consults</span></a>
-                        </li>
-                        <li class="slide">
-                            <a class="side-menu__item" href="{{route('c-reports.index')}}"><i class="fa fa-file side-menu__icon" ></i> <span class="side-menu__label pt-3">Reports</span></a>
-                        </li>
-                        <li class="slide">
-                            <a class="side-menu__item" href="{{route('buyer_bidd.index')}}"><i class="fa fa-bullhorn  side-menu__icon"></i> <span class="side-menu__label pt-3">Bidding</span></a>
-                        </li>
                 @endif
                 @if(auth()->check() and auth()->user()->type === 'merchant')
                 <li class="slide">
                     <a class="side-menu__item" href="{{url('/merchant')}}"><i class="fas fa-tachometer-alt side-menu__icon"></i> <span class="side-menu__label pt-3">Dashboard</span></a>
                 </li>
-                 <li class="slide">
-                      <a class="side-menu__item" href="{{route('properties.index')}}"><i class="fas fa-building side-menu__icon"></i> <span class="side-menu__label pt-3">Property</span></a>
-                 </li>
-                        <li class="slide">
-                            <a class="side-menu__item" href="{{route('consults2.index')}}"><i class="fab fa-rocketchat side-menu__icon"></i> <span class="side-menu__label pt-3">Consults</span></a>
-                        </li>
-                        <li class="slide">
-                            <a class="side-menu__item" href="{{route('seller-reports.index')}}"><i class="fa fa-file side-menu__icon" ></i> <span class="side-menu__label pt-3">Reports</span></a>
-                        </li>
-                        <li class="slide">
-                            <a class="side-menu__item" href="{{route('seller_bidd.index')}}"><i class="fa fa-bullhorn  side-menu__icon"></i> <span class="side-menu__label pt-3">Create Bidding</span></a>
-                        </li>
                 @endif
             </ul>
         </div>
@@ -212,7 +173,7 @@
     <!-- Footer opened -->
     <div class="main-footer ht-40">
         <div class="container-fluid pd-t-0-f ht-100p">
-            <span>Copyright © {{date('Y')}} <a href="#">RealEstateAgency</a>. All rights reserved.</span>
+            <span>Copyright © {{date('Y')}} <a href="#">WorkCycle</a>. All rights reserved.</span>
         </div>
     </div>
     <!-- Footer closed -->

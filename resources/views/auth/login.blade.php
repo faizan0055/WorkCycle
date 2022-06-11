@@ -5,7 +5,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Title -->
-    <title> Login | Real Estate </title>
+    <title> Login | WorkCycle </title>
     <meta name="Author" content="Boat Brain">
     <meta name="Keywords" content="Boat Brain,"/>
 
@@ -100,10 +100,10 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            <div class="main-signin-footer mt-5">
-														<p><a href="{{route('forget.pass')}}">Forgot password?</a></p>
-														<p>Don't have an account? <a href="{{url('register')}}">Create an Account</a></p>
-													</div>
+{{--                                            <div class="main-signin-footer mt-5">--}}
+{{--														<p><a href="{{route('forget.pass')}}">Forgot password?</a></p>--}}
+{{--														<p>Don't have an account? <a href="{{url('register')}}">Create an Account</a></p>--}}
+{{--													</div>--}}
                                         </div>
                                     </div>
                                 </div>

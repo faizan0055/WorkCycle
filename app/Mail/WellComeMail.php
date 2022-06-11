@@ -16,8 +16,6 @@ class WellComeMail extends Mailable
     public function __construct($user)
     {
         $this->data = $user;
-//        $this->passw = $pass;
-       // dd($this->passw);
     }
     /**
      * Build the message.
@@ -30,8 +28,6 @@ class WellComeMail extends Mailable
 //                ->from('faizan055ali@gmail.com') // Sender mail
                 ->subject('WellCome Mail') // Mail subject
                 ->view('mail.message')
-                ->with('data',$this->data)
-//                ->with('passw',$this->passw)  // View file resource/views/mail/index
-                ;
+                ->with('data',$this->data);
     }
 }

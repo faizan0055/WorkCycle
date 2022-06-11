@@ -36,14 +36,16 @@
           <div class="col-sm-12">
             <div class="contact-map box">
               <div id="map" class="contact-map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968482413!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes+Square!5e0!3m2!1ses-419!2sve!4v1510329142834" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+{{--                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968482413!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes+Square!5e0!3m2!1ses-419!2sve!4v1510329142834" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>--}}
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54260.53212653113!2d74.22302448488321!3d31.790029314103993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391920dc82e30d5f%3A0x62b19b72f991085e!2sMuridke%2C%20Sheikhupura%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2s!4v1654233811254!5m2!1sen!2s"  width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
               </div>
             </div>
           </div>
           <div class="col-sm-12 section-t8">
             <div class="row">
               <div class="col-md-7">
-                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                <form action="{{route('contact.us')}}" method="post">
+                @csrf
                   <div class="row">
                     <div class="col-md-6 mb-3">
                       <div class="form-group">
@@ -65,15 +67,9 @@
                         <textarea name="message" class="form-control" name="message" cols="45" rows="8" placeholder="Message" required></textarea>
                       </div>
                     </div>
-                    <div class="col-md-12 my-3">
-                      <div class="mb-3">
-                        <div class="loading">Loading</div>
-                        <div class="error-message"></div>
-                        <div class="sent-message">Your message has been sent. Thank you!</div>
-                      </div>
-                    </div>
 
-                    <div class="col-md-12 text-center">
+
+                    <div class="col-md-12 text-center mt-3">
                       <button type="submit" class="btn btn-a">Send Message</button>
                     </div>
                   </div>
@@ -90,7 +86,7 @@
                     </div>
                     <div class="icon-box-content">
                       <p class="mb-1">Email.
-                        <span class="color-a">contact@example.com</span>
+                        <span class="color-a">bc180407881@vu.edu.pk/bc180405885@vu.edu.pk</span>
                       </p>
                       <p class="mb-1">Phone.
                         <span class="color-a">+54 356 945234</span>
@@ -108,8 +104,8 @@
                     </div>
                     <div class="icon-box-content">
                       <p class="mb-1">
-                        Manhattan, Nueva York 10036,
-                        <br> EE. UU.
+                        Raiwind,
+                        <br> Virtual University Of Pakistan.
                       </p>
                     </div>
                   </div>

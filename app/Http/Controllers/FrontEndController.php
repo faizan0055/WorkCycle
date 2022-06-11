@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Advertisement;
+use App\Mail\ContactMail;
 use App\Property;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class FrontEndController extends Controller
 {
@@ -66,5 +68,13 @@ class FrontEndController extends Controller
             ->get();
         //dd($search);
         return view('frontend.search_property', compact('search'));
+    }
+    public function ContactUs(Request $request){
+        //dd($request->all());
+        $contactdata = $request->all();
+        Mail::to('bc180407881@vu.edu.pk')->send(new ContactMail($contactdata));
+
+        return redirect()->back();
+
     }
 }

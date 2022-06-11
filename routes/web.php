@@ -124,5 +124,6 @@ Route::get('/agents_grid', 'FrontEndController@agentGrid')->name('agent.grid');
 Route::get('/agent_single', 'FrontEndController@agentSigle')->name('agent.single');
 Route::get('/contact', 'FrontEndController@contact')->name('contact');
 Route::get('/search_property', 'FrontEndController@SearchProperty')->name('search.property');
+Route::post('/contact_us', 'FrontEndController@ContactUs')->name('contact.us');
 
 

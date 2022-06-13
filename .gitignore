@@ -1,6 +1,6 @@
 /node_modules
 /public
-
+/database/migrations
 /storage/*.key
 /vendor
 .env
